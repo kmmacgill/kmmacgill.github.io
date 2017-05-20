@@ -1,0 +1,119 @@
+* {
+  box-sizing: border-box;    /* changes width property to total width instead of content width */
+}
+
+article,
+aside,
+footer,
+header,
+nav,
+section,
+main,
+figcaption,
+figure {
+  display: block;   /* just in case we have any older browsers that don't recognize the HTML5 semantic elements */
+}
+
+body {
+  margin: 0;  /* remove any margin from body to avoid unsightly gaps. */
+  padding: 0;  /* ditto for padding  */
+  background-color: #fa5a2a;
+  display: flex;
+  flex-flow: column;
+}
+
+header {
+  margin: 0;  /* remove any margin from body to avoid unsightly gaps. */
+  padding: 0;
+  h1 {
+    margin: .5px;
+  }
+  h3 {
+    margin-top:.5px;
+    margin-left: 65%;
+  }
+}
+
+#navbar {
+  order: 1;
+  ul {
+    display: flex;
+    padding: 5%;
+    list-style-type: none;
+    li {
+      padding-left: 5%;
+    }
+
+    li a{
+      color: white;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      background-color: #c54031;
+    }
+  }
+}
+
+main {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  #central-info {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    text-align: center;
+    width: 350px;
+    height: auto;
+    h3 {
+      padding-top: 10%;
+    }
+    h4 {
+      visibility: hidden;
+    }
+    div {
+      width: 33%;
+      p:first-of-type{
+        padding-top: 10%;
+      };
+    }
+  }
+  #current-conditions {
+    width: 400px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    h1 {
+      padding-left: 5%;
+    }
+    .condition-container {
+      display: flex;
+      flex-flow: wrap;
+      padding-left: 15%;
+      p {
+        width: 25%;
+        margin-right: 25%;
+      }
+      .condition-title {
+        text-align: left;
+      }
+      .condition-info {
+        text-align: left;
+      }
+    }
+  }
+}
+
+#hourly-forecast {
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+footer {
+  margin: 0;
+  padding: 0;
+}
