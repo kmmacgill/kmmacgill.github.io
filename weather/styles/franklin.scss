@@ -15,149 +15,291 @@ figure {
   display: block;   /* just in case we have any older browsers that don't recognize the HTML5 semantic elements */
 }
 
-body {
-  margin: 0;  /* remove any margin from body to avoid unsightly gaps. */
-  padding: 0;  /* ditto for padding  */
-  background-color: #ffffff;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 15% auto 10% 10%;
-  grid-template-areas:
-    "header"
-    "main"
-    "footer"
-    "nav";
-  align-items: center;
-}
+@media screen and (min-width: 550px) {
 
-header {
-  grid-area: header;
-  margin: 0;  /* remove any margin from body to avoid unsightly gaps. */
-  padding: 0;
-  background-color: #A6D8DB;
-  font-size: 20px;
-  h1 {
-    margin: .5px;
-  }
-  h3 {
-    margin-top:.5px;
-    margin-left: 65%;
-  }
-}
-
-#navbar {
-  background-color: #F07C6C;
-  grid-area: nav;
-  font-size: 16px;
-  ul {
-    display: flex;
-    padding: 5%;
-    list-style-type: none;
-    li {
-      padding-left: 5%;
-    }
-
-    li a{
-      color: #4A4653;
-      text-align: center;
-      text-decoration: none;
-    }
-
-    li a:hover {
-      color: #4A4653;
-      text-decoration: underline;
-    }
-    li a:visited {
-      color: #4A4653;
-    }
-    li a:active {
-      color: #4A4653;
-    }
-  }
-}
-
-main {
-  grid-area: main;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 100%;
-  justify-items: center;
-  background-image: url("../images/sunny.png");
-  background-size: cover;
-  #central-info {
-    display: flex;
-    flex-flow: column nowrap;
+  body {
+    margin: 0; /* remove any margin from body to avoid unsightly gaps. */
+    padding: 0; /* ditto for padding  */
+    background-color: #F07C6C;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr 4fr 1fr;
+    grid-template-areas: "header" "nav" "main" "footer";
     align-items: center;
-    text-align: center;
-    background:rgba(200,200,200,0.6);
-    margin: .2em auto;
-    border: 1px solid;
-    border-radius:5px;
-    width: 350px;
-    height: auto;
-    h4 {
-      visibility: hidden;
+  }
+
+  header {
+    grid-area: header;
+    margin: 0; /* remove any margin from body to avoid unsightly gaps. */
+    padding: 0;
+    background-color: #A6D8DB;
+    font-size: 20px;
+    h1 {
+      margin: .5px;
     }
-    div {
-      width: 33%;
-      p {
-        float: left;
+    h3 {
+      margin-top: .5px;
+      margin-left: 65%;
+    }
+  }
+
+  #navbar {
+    background-color: #F07C6C;
+    grid-area: nav;
+    font-size: 16px;
+    ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      list-style-type: none;
+      li {
+        padding-left: 5%;
       }
-      h3 {
-        float: right;
+
+      li a {
+        color: #4A4653;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      li a:hover {
+        color: #4A4653;
+        text-decoration: underline;
+      }
+      li a:visited {
+        color: #4A4653;
+      }
+      li a:active {
+        color: #4A4653;
       }
     }
   }
-  #current-conditions {
-    width: 400px;
-    background:rgba(200,200,200,0.6);
-    margin: .2em auto;
-    border: 1px solid;
-    border-radius:5px;
-    h1 {
+
+  main {
+    grid-area: main;
+    margin: 0;
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "current center hourly";
+    justify-content: space-between;
+    background-image: url("../images/sunny.png");
+    background-size: cover;
+    #central-info {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      text-align: center;
+      grid-area: center;
+      background: rgba(200, 200, 200, 0.6);
+      border: 1px solid;
+      border-radius: 5px;
+      div {
+        width: 33%;
+        p {
+          float: left;
+        }
+        h3 {
+          float: right;
+        }
+      }
+    }
+    #current-conditions {
+      grid-area: current;
+      background: rgba(200, 200, 200, 0.6);
+      border: 1px solid;
+      border-radius: 5px;
+      h1 {
+        padding-left: 5%;
+      }
+      .condition-container {
+        display: flex;
+        flex-flow: wrap;
+        padding-left: 3%;
+        font-size: 20px;
+        p {
+          width: 25%;
+          margin-right: 25%;
+          text-align: right;
+          float: right;
+        }
+        .condition-title {
+          text-align: left;
+        }
+        .condition-info {
+          text-align: left;
+        }
+      }
+    }
+    #hourly-forecast {
+      grid-area: hourly;
+      background: rgba(200, 200, 200, 0.6);
+      border: 1px solid;
+      border-radius: 5px;
+      h1 {
       padding-left: 5%;
     }
-    .condition-container {
-      display: flex;
-      flex-flow: wrap;
-      padding-left: 15%;
-      font-size: 20px;
-      p {
-        width: 25%;
-        margin-right: 25%;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: Sansita, "second choice", generic-family;
+  }
+
+  footer {
+    grid-area: footer;
+    background-color: #A6D8DB;
+    margin: 0;
+    padding: 0;
+  }
+
+}
+
+@media screen and (max-width: 551px) {
+
+  body {
+    margin: 0; /* remove any margin from body to avoid unsightly gaps. */
+    padding: 0; /* ditto for padding  */
+    background-color: #F07C6C;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 15% auto 10% 10%;
+    grid-template-areas: "header" "main" "footer" "nav";
+    align-items: center;
+  }
+
+  header {
+    grid-area: header;
+    margin: 0; /* remove any margin from body to avoid unsightly gaps. */
+    padding: 0;
+    background-color: #A6D8DB;
+    font-size: 20px;
+    h1 {
+      margin: .5px;
+    }
+    h3 {
+      margin-top: .5px;
+      margin-left: 65%;
+    }
+  }
+
+  #navbar {
+    background-color: #F07C6C;
+    grid-area: nav;
+    font-size: 16px;
+    ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      list-style-type: none;
+      li {
+        padding-left: 5%;
       }
-      .condition-title {
-        text-align: left;
+
+      li a {
+        color: #4A4653;
+        text-align: center;
+        text-decoration: none;
       }
-      .condition-info {
-        text-align: left;
+
+      li a:hover {
+        color: #4A4653;
+        text-decoration: underline;
+      }
+      li a:visited {
+        color: #4A4653;
+      }
+      li a:active {
+        color: #4A4653;
       }
     }
   }
-}
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Sansita, "second choice", generic-family;
-}
+  main {
+    grid-area: main;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 100%;
+    justify-items: center;
+    background-image: url("../images/sunny.png");
+    background-size: cover;
+    #central-info {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      text-align: center;
+      background: rgba(200, 200, 200, 0.6);
+      margin: .2em auto;
+      border: 1px solid;
+      border-radius: 5px;
+      width: 350px;
+      height: auto;
+      h4 {
+        visibility: hidden;
+      }
+      div {
+        width: 33%;
+        p {
+          float: left;
+        }
+        h3 {
+          float: right;
+        }
+      }
+    }
+    #current-conditions {
+      width: 400px;
+      background: rgba(200, 200, 200, 0.6);
+      margin: .2em auto;
+      border: 1px solid;
+      border-radius: 5px;
+      h1 {
+        padding-left: 5%;
+      }
+      .condition-container {
+        display: flex;
+        flex-flow: wrap;
+        padding-left: 15%;
+        font-size: 20px;
+        p {
+          width: 25%;
+          margin-right: 25%;
+        }
+        .condition-title {
+          text-align: left;
+        }
+        .condition-info {
+          text-align: left;
+        }
+      }
+    }
+  }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: Sansita, "second choice", generic-family;
+  }
 
+  #hourly-forecast {
+    grid-area: hourly;
+    margin: 0;
+    padding: 0;
+    display: none;
+  }
 
-#hourly-forecast {
-  grid-area: hourly;
-  margin: 0;
-  padding: 0;
-  display: none;
-}
+  footer {
+    grid-area: footer;
+    background-color: #A6D8DB;
+    margin: 0;
+    padding: 0;
+  }
 
-footer {
-  grid-area: footer;
-  background-color: #A6D8DB;
-  margin: 0;
-  padding: 0;
 }

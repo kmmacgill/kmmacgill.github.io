@@ -15,120 +15,236 @@ figure {
   display: block;
   /* just in case we have any older browsers that don't recognize the HTML5 semantic elements */ }
 
-body {
-  margin: 0;
-  /* remove any margin from body to avoid unsightly gaps. */
-  padding: 0;
-  /* ditto for padding  */
-  background-color: #ffffff;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 15% auto 10% 10%;
-  grid-template-areas: "header" "main" "footer" "nav";
-  align-items: center; }
+@media screen and (min-width: 550px) {
+  body {
+    margin: 0;
+    /* remove any margin from body to avoid unsightly gaps. */
+    padding: 0;
+    /* ditto for padding  */
+    background-color: #F07C6C;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr 4fr 1fr;
+    grid-template-areas: "header" "nav" "main" "footer";
+    align-items: center; }
 
-header {
-  grid-area: header;
-  margin: 0;
-  /* remove any margin from body to avoid unsightly gaps. */
-  padding: 0;
-  background-color: #A6D8DB;
-  font-size: 20px; }
-  header h1 {
-    margin: .5px; }
-  header h3 {
-    margin-top: .5px;
-    margin-left: 65%; }
+  header {
+    grid-area: header;
+    margin: 0;
+    /* remove any margin from body to avoid unsightly gaps. */
+    padding: 0;
+    background-color: #A6D8DB;
+    font-size: 20px; }
+    header h1 {
+      margin: .5px; }
+    header h3 {
+      margin-top: .5px;
+      margin-left: 65%; }
 
-#navbar {
-  background-color: #F07C6C;
-  grid-area: nav;
-  font-size: 16px; }
-  #navbar ul {
-    display: flex;
-    padding: 5%;
-    list-style-type: none; }
-    #navbar ul li {
-      padding-left: 5%; }
-    #navbar ul li a {
-      color: #4A4653;
-      text-align: center;
-      text-decoration: none; }
-    #navbar ul li a:hover {
-      color: #4A4653;
-      text-decoration: underline; }
-    #navbar ul li a:visited {
-      color: #4A4653; }
-    #navbar ul li a:active {
-      color: #4A4653; }
+  #navbar {
+    background-color: #F07C6C;
+    grid-area: nav;
+    font-size: 16px; }
+    #navbar ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      list-style-type: none; }
+      #navbar ul li {
+        padding-left: 5%; }
+      #navbar ul li a {
+        color: #4A4653;
+        text-align: center;
+        text-decoration: none; }
+      #navbar ul li a:hover {
+        color: #4A4653;
+        text-decoration: underline; }
+      #navbar ul li a:visited {
+        color: #4A4653; }
+      #navbar ul li a:active {
+        color: #4A4653; }
 
-main {
-  grid-area: main;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 100%;
-  justify-items: center;
-  background-image: url("../images/sunny.png");
-  background-size: cover; }
-  main #central-info {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    text-align: center;
-    background: rgba(200, 200, 200, 0.6);
-    margin: .2em auto;
-    border: 1px solid;
-    border-radius: 5px;
-    width: 350px;
-    height: auto; }
-    main #central-info h4 {
-      visibility: hidden; }
-    main #central-info div {
-      width: 33%; }
-      main #central-info div p {
-        float: left; }
-      main #central-info div h3 {
-        float: right; }
-  main #current-conditions {
-    width: 400px;
-    background: rgba(200, 200, 200, 0.6);
-    margin: .2em auto;
-    border: 1px solid;
-    border-radius: 5px; }
-    main #current-conditions h1 {
-      padding-left: 5%; }
-    main #current-conditions .condition-container {
+  main {
+    grid-area: main;
+    margin: 0;
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "current center hourly";
+    justify-content: space-between;
+    background-image: url("../images/sunny.png");
+    background-size: cover; }
+    main #central-info {
       display: flex;
-      flex-flow: wrap;
-      padding-left: 15%;
-      font-size: 20px; }
-      main #current-conditions .condition-container p {
-        width: 25%;
-        margin-right: 25%; }
-      main #current-conditions .condition-container .condition-title {
-        text-align: left; }
-      main #current-conditions .condition-container .condition-info {
-        text-align: left; }
+      flex-flow: column nowrap;
+      align-items: center;
+      text-align: center;
+      grid-area: center;
+      background: rgba(200, 200, 200, 0.6);
+      border: 1px solid;
+      border-radius: 5px; }
+      main #central-info div {
+        width: 33%; }
+        main #central-info div p {
+          float: left; }
+        main #central-info div h3 {
+          float: right; }
+    main #current-conditions {
+      grid-area: current;
+      background: rgba(200, 200, 200, 0.6);
+      border: 1px solid;
+      border-radius: 5px; }
+      main #current-conditions h1 {
+        padding-left: 5%; }
+      main #current-conditions .condition-container {
+        display: flex;
+        flex-flow: wrap;
+        padding-left: 3%;
+        font-size: 20px; }
+        main #current-conditions .condition-container p {
+          width: 25%;
+          margin-right: 25%;
+          text-align: right;
+          float: right; }
+        main #current-conditions .condition-container .condition-title {
+          text-align: left; }
+        main #current-conditions .condition-container .condition-info {
+          text-align: left; }
+    main #hourly-forecast {
+      grid-area: hourly;
+      background: rgba(200, 200, 200, 0.6);
+      border: 1px solid;
+      border-radius: 5px; }
+      main #hourly-forecast h1 {
+        padding-left: 5%; }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Sansita, "second choice", generic-family; }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: Sansita, "second choice", generic-family; }
 
-#hourly-forecast {
-  grid-area: hourly;
-  margin: 0;
-  padding: 0;
-  display: none; }
+  footer {
+    grid-area: footer;
+    background-color: #A6D8DB;
+    margin: 0;
+    padding: 0; } }
+@media screen and (max-width: 551px) {
+  body {
+    margin: 0;
+    /* remove any margin from body to avoid unsightly gaps. */
+    padding: 0;
+    /* ditto for padding  */
+    background-color: #F07C6C;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 15% auto 10% 10%;
+    grid-template-areas: "header" "main" "footer" "nav";
+    align-items: center; }
 
-footer {
-  grid-area: footer;
-  background-color: #A6D8DB;
-  margin: 0;
-  padding: 0; }
+  header {
+    grid-area: header;
+    margin: 0;
+    /* remove any margin from body to avoid unsightly gaps. */
+    padding: 0;
+    background-color: #A6D8DB;
+    font-size: 20px; }
+    header h1 {
+      margin: .5px; }
+    header h3 {
+      margin-top: .5px;
+      margin-left: 65%; }
+
+  #navbar {
+    background-color: #F07C6C;
+    grid-area: nav;
+    font-size: 16px; }
+    #navbar ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      list-style-type: none; }
+      #navbar ul li {
+        padding-left: 5%; }
+      #navbar ul li a {
+        color: #4A4653;
+        text-align: center;
+        text-decoration: none; }
+      #navbar ul li a:hover {
+        color: #4A4653;
+        text-decoration: underline; }
+      #navbar ul li a:visited {
+        color: #4A4653; }
+      #navbar ul li a:active {
+        color: #4A4653; }
+
+  main {
+    grid-area: main;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 100%;
+    justify-items: center;
+    background-image: url("../images/sunny.png");
+    background-size: cover; }
+    main #central-info {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      text-align: center;
+      background: rgba(200, 200, 200, 0.6);
+      margin: .2em auto;
+      border: 1px solid;
+      border-radius: 5px;
+      width: 350px;
+      height: auto; }
+      main #central-info h4 {
+        visibility: hidden; }
+      main #central-info div {
+        width: 33%; }
+        main #central-info div p {
+          float: left; }
+        main #central-info div h3 {
+          float: right; }
+    main #current-conditions {
+      width: 400px;
+      background: rgba(200, 200, 200, 0.6);
+      margin: .2em auto;
+      border: 1px solid;
+      border-radius: 5px; }
+      main #current-conditions h1 {
+        padding-left: 5%; }
+      main #current-conditions .condition-container {
+        display: flex;
+        flex-flow: wrap;
+        padding-left: 15%;
+        font-size: 20px; }
+        main #current-conditions .condition-container p {
+          width: 25%;
+          margin-right: 25%; }
+        main #current-conditions .condition-container .condition-title {
+          text-align: left; }
+        main #current-conditions .condition-container .condition-info {
+          text-align: left; }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: Sansita, "second choice", generic-family; }
+
+  #hourly-forecast {
+    grid-area: hourly;
+    margin: 0;
+    padding: 0;
+    display: none; }
+
+  footer {
+    grid-area: footer;
+    background-color: #A6D8DB;
+    margin: 0;
+    padding: 0; } }
 
 /*# sourceMappingURL=franklin.css.map */
