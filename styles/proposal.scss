@@ -25,6 +25,8 @@ body {
   grid-template-areas: "head head head" "aside aside aside" ". main ." ". foot .";
   background-image: url("../images/parchment-background.png");
   background-size: cover;
+  margin: auto;
+  max-width: 1250px;
   ul {
     list-style: none;
   }
@@ -85,7 +87,6 @@ body {
       padding-bottom: 0;
       grid-area: person;
       font-size: 2em;
-      background-color: lime;
       .josh-pic {
         border-radius: 15px;
         float: left;
@@ -100,7 +101,6 @@ body {
     .pages {
       grid-area: pages;
       font-size: 2em;
-      background-color: lime;
     }
     .wires {
       grid-area: wires;

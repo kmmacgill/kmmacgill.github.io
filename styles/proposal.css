@@ -10,7 +10,9 @@ body {
   grid-template-rows: auto;
   grid-template-areas: "head head head" "aside aside aside" ". main ." ". foot .";
   background-image: url("../images/parchment-background.png");
-  background-size: cover; }
+  background-size: cover;
+  margin: auto;
+  max-width: 1250px; }
   body ul {
     list-style: none; }
   body a {
@@ -59,8 +61,7 @@ body {
       margin-bottom: 0;
       padding-bottom: 0;
       grid-area: person;
-      font-size: 2em;
-      background-color: lime; }
+      font-size: 2em; }
       body main .persons .josh-pic {
         border-radius: 15px;
         float: left; }
@@ -71,8 +72,7 @@ body {
         width: 13em; }
     body main .pages {
       grid-area: pages;
-      font-size: 2em;
-      background-color: lime; }
+      font-size: 2em; }
     body main .wires {
       grid-area: wires;
       font-size: 2em; }
