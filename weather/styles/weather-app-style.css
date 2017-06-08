@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister');
+@import url('https://fonts.googleapis.com/css?family=Medula+One');
 table {
     border: 1px solid black;
     border-collapse: collapse;
@@ -12,3 +14,51 @@ img {
     height: auto;
 }
 
+
+.gv .title {
+    font-family: 'Love Ya Like A Sister', cursive;
+}
+
+.gv .body {
+    font-family: 'Medula One', cursive;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
+
+.wrap2 {
+    height: 500px;
+    width: auto;
+    display: flex;
+    flex-flow: row wrap;
+}
+.color-swatch {
+    border: 1px solid;
+    border-radius: 10px;
+    flex: 0 1 25%;
+}
+.color-swatch__color {
+    width: 100%;
+    height: 80px;
+    border-radius: 10px 10px 0 0;
+}
+.color-swatch__primary {
+    background-color: #354EDB;
+}
+.color-swatch__secondary {
+    background-color: #F0AE34;
+}
+.color-swatch__description {
+    padding: .5em;
+}
+
+.wireframes img {
+    height: 500px;
+    width: 500px;
+}
+.wireframes img:first-of-type {
+    transform: rotate(90deg);
+}
