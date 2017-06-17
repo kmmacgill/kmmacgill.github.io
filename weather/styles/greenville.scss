@@ -166,12 +166,24 @@ figure {
       grid-area: hourly;
       height: 95%;
       width: 95%;
-      display: flex;
       background: rgba(200, 200, 200, 0.6);
       border: 1px solid;
       border-radius: 5px;
-      h1 {
+      display: grid;
+      grid-template-columns: .5fr auto;
+      grid-template-areas: "ttle list";
+      h3 {
+        grid-area: ttle;
         padding-left: 5%;
+      }
+      ul {
+        grid-area: list;
+        display: flex;
+        list-style: none;
+        flex-flow: row wrap;
+        li {
+          padding-left: 5%;
+        }
       }
     }
   }
@@ -181,6 +193,18 @@ figure {
     background-color: #A6D8DB;
     margin: 0;
     padding: 0;
+    a {
+      text-decoration: none;
+      float: right;
+      color: #000;
+      border: 1px solid;
+      border-radius: 5px;
+      background-color: $darkblue;
+      &:hover {
+        color: #ffffff;
+        text-decoration: underline;
+      }
+    }
   }
 
 }
