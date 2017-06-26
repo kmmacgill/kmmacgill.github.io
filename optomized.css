@@ -1,0 +1,124 @@
+/*** uncss> filename: https://kmmacgill.github.io/styles/proposal.css ***/
+@font-face {
+  font-family: body-font;
+  src: url("../fonts/hobbiton.ttf"); }
+@font-face {
+  font-family: title-font;
+  src: url("../fonts/ring-bearer.TTF"); }
+body {
+  display: grid;
+  grid-template-columns: 2% 96% 2%;
+  grid-template-rows: auto;
+  grid-template-areas: "head head head" "aside aside aside" ". main ." "foot foot foot";
+  background-image: url("../images/parchment-background.png");
+  background-size: cover;
+  margin: auto; }
+  body ul {
+    list-style: none; }
+  body a {
+    color: #fff;
+    text-decoration: none; }
+  body header {
+    text-align: center;
+    font-size: 2em;
+    background: rgba(100, 100, 100, 0.6);
+    border-top: 2px solid;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-radius: 20px 20px 0 0;
+    grid-area: head; }
+  body aside {
+    background: rgba(100, 100, 100, 0.6);
+    border-radius: 0 0 20px 20px;
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    grid-area: aside; }
+    body aside ul {
+      font-family: body-font;
+      font-size: 2em;
+      display: flex;
+      justify-content: space-around; }
+      body aside ul a {
+        border-radius: 20px;
+        background: rgba(200, 0, 5, 0.75); }
+      body aside ul a:hover {
+        border: 5px solid #fff; }
+  body main {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: "info info info info info info" "person person person pages pages pages" "wires wires wires styles styles styles";
+    grid-column-gap: 5%;
+    grid-row-gap: 0;
+    background-color: rgba(162, 92, 17, 0.6); }
+    body main .info {
+      grid-area: info;
+      text-align: center;
+      font-size: 2em; }
+    body main .persons {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      grid-area: person;
+      font-size: 2em; }
+      body main .persons .josh-pic {
+        border-radius: 15px;
+        float: left; }
+      body main .persons .korey-pic {
+        border-radius: 15px;
+        float: left;
+        height: 14em;
+        width: 13em; }
+    body main .pages {
+      grid-area: pages;
+      font-size: 2em; }
+    body main .wires {
+      grid-area: wires;
+      font-size: 2em; }
+      body main .wires img {
+        max-width: 100%;
+        height: auto; }
+    body main .styles {
+      grid-area: styles;
+      font-size: 2em; }
+      body main .styles .colors ul {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        grid-template-areas: "c1 c2 c3" "c4 c5 c6"; }
+        body main .styles .colors ul li {
+          height: 75px;
+          width: 95%; }
+        body main .styles .colors ul li:nth-of-type(1) {
+          grid-area: c1;
+          background-color: #ff000e; }
+        body main .styles .colors ul li:nth-of-type(2) {
+          grid-area: c2;
+          background-color: #ff7a11; }
+        body main .styles .colors ul li:nth-of-type(3) {
+          grid-area: c3;
+          background-color: #ffee08; }
+        body main .styles .colors ul li:nth-of-type(4) {
+          grid-area: c4;
+          background-color: #007509; }
+        body main .styles .colors ul li:nth-of-type(5) {
+          grid-area: c5;
+          background-color: #313131; }
+        body main .styles .colors ul li:nth-of-type(6) {
+          grid-area: c6;
+          background-color: #061fa0; }
+      body main .styles .typography .ring, body main .styles .typography #ring-body {
+        font-family: title-font; }
+      body main .styles .typography .hobbit, body main .styles .typography #hobbit-body {
+        font-family: body-font; }
+      body main .styles .typography a:hover {
+        text-decoration: underline; }
+  body footer {
+    font-size: 2em;
+    grid-area: foot;
+    padding-left: 10%;
+    background-color: rgba(144, 130, 5, 0.6); }
+
+/*# sourceMappingURL=proposal.css.map */
+

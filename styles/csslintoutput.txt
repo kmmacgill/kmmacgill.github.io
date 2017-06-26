@@ -1,0 +1,168 @@
+
+
+csslint: There are 33 problems in D:\Code\webStorm Projects\kmmacgill.github.io\styles\proposal.css.
+
+proposal.css
+1: warning at line 3, col 3
+@font-face declaration doesn't follow the fontspring bulletproof syntax.
+  src: url("../fonts/hobbiton.ttf"); }
+
+proposal.css
+2: warning at line 6, col 3
+@font-face declaration doesn't follow the fontspring bulletproof syntax.
+  src: url("../fonts/ring-bearer.TTF"); }
+
+proposal.css
+3: warning at line 7, col 1
+Rule doesn't have all its properties in alphabetical order.
+body {
+
+proposal.css
+4: warning at line 20, col 3
+Rule doesn't have all its properties in alphabetical order.
+  body header {
+
+proposal.css
+5: warning at line 23, col 5
+Fallback background (hex or RGB) should precede RGBA background.
+    background: rgba(100, 100, 100, 0.6);
+
+proposal.css
+6: warning at line 29, col 3
+Rule doesn't have all its properties in alphabetical order.
+  body aside {
+
+proposal.css
+7: warning at line 30, col 5
+Fallback background (hex or RGB) should precede RGBA background.
+    background: rgba(100, 100, 100, 0.6);
+
+proposal.css
+8: warning at line 36, col 5
+Rule doesn't have all its properties in alphabetical order.
+    body aside ul {
+
+proposal.css
+9: warning at line 41, col 7
+Rule doesn't have all its properties in alphabetical order.
+      body aside ul a {
+
+proposal.css
+10: warning at line 43, col 9
+Fallback background (hex or RGB) should precede RGBA background.
+        background: rgba(200, 0, 5, 0.75); }
+
+proposal.css
+11: warning at line 46, col 3
+Rule doesn't have all its properties in alphabetical order.
+  body main {
+
+proposal.css
+12: error at line 49, col 38
+Expected RBRACE at line 49, col 38.
+    grid-template-columns: repeat(6, 1fr);
+
+proposal.css
+13: warning at line 52, col 5
+Unknown property 'grid-column-gap'.
+    grid-column-gap: 5%;
+
+proposal.css
+14: warning at line 53, col 5
+Unknown property 'grid-row-gap'.
+    grid-row-gap: 0;
+
+proposal.css
+15: warning at line 54, col 5
+Fallback background-color (hex or RGB) should precede RGBA background-color.
+    background-color: rgba(162, 92, 17, 0.6); }
+
+proposal.css
+16: warning at line 55, col 5
+Rule doesn't have all its properties in alphabetical order.
+    body main .info {
+
+proposal.css
+17: warning at line 59, col 5
+Rule doesn't have all its properties in alphabetical order.
+    body main .persons {
+
+proposal.css
+18: warning at line 72, col 5
+Rule doesn't have all its properties in alphabetical order.
+    body main .pages {
+
+proposal.css
+19: warning at line 75, col 5
+Rule doesn't have all its properties in alphabetical order.
+    body main .wires {
+
+proposal.css
+20: warning at line 78, col 7
+Rule doesn't have all its properties in alphabetical order.
+      body main .wires img {
+
+proposal.css
+21: warning at line 81, col 5
+Rule doesn't have all its properties in alphabetical order.
+    body main .styles {
+
+proposal.css
+22: warning at line 84, col 7
+Rule doesn't have all its properties in alphabetical order.
+      body main .styles .colors ul {
+
+proposal.css
+23: error at line 86, col 42
+Expected RBRACE at line 86, col 42.
+        grid-template-columns: repeat(3, 1fr);
+
+proposal.css
+24: warning at line 92, col 9
+Rule doesn't have all its properties in alphabetical order.
+        body main .styles .colors ul li:nth-of-type(1) {
+
+proposal.css
+25: warning at line 95, col 9
+Rule doesn't have all its properties in alphabetical order.
+        body main .styles .colors ul li:nth-of-type(2) {
+
+proposal.css
+26: warning at line 98, col 9
+Rule doesn't have all its properties in alphabetical order.
+        body main .styles .colors ul li:nth-of-type(3) {
+
+proposal.css
+27: warning at line 101, col 9
+Rule doesn't have all its properties in alphabetical order.
+        body main .styles .colors ul li:nth-of-type(4) {
+
+proposal.css
+28: warning at line 104, col 9
+Rule doesn't have all its properties in alphabetical order.
+        body main .styles .colors ul li:nth-of-type(5) {
+
+proposal.css
+29: warning at line 107, col 9
+Rule doesn't have all its properties in alphabetical order.
+        body main .styles .colors ul li:nth-of-type(6) {
+
+proposal.css
+30: warning at line 110, col 44
+Don't use IDs in selectors.
+      body main .styles .typography .ring, body main .styles .typography #ring-body {
+
+proposal.css
+31: warning at line 112, col 46
+Don't use IDs in selectors.
+      body main .styles .typography .hobbit, body main .styles .typography #hobbit-body {
+
+proposal.css
+32: warning at line 116, col 3
+Rule doesn't have all its properties in alphabetical order.
+  body footer {
+
+proposal.css
+33: warning at line 120, col 5
+Fallback background-color (hex or RGB) should precede RGBA background-color.
+    background-color: rgba(144, 130, 5, 0.6); }
