@@ -8,7 +8,7 @@ function getJSON(part) {
 
     var myInit = { method: 'GET',
                    headers: myHeader,
-                   mode: 'cors',
+                   mode: 'no-cors',
                    cache: 'default' };
     var myRequest = new Request(url + part, myInit);
 
