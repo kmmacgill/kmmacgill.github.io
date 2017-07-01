@@ -1,71 +1,73 @@
 /**
  * Created by kmmac on 6/30/2017.
  */
-function getJSON(part) {
-    var url = "https://dnd5eapi.co/api/";
-    //FETCH INIT
-    var myHeader = new Headers();
-
-    var myInit = { method: 'GET',
-                   headers: myHeader,
-                   mode: 'no-cors',
-                   cache: 'default' };
-    var myRequest = new Request(url + part, myInit);
-
-    return fetch(myRequest)
+function getJSON(url) {
+    return fetch(url)
         .then(function (response) {
-            response.forEach(function(element) {
-                createElement(element);
-            });
+            return response.json();
         })
         .catch(function (error) {
             console.log(error);
         });
 }
 
-function createCORSRequest(method, part) {
-    var url = "https://dnd5eapi.co/api/" + part;
-    var xhr = new XMLHttpRequest();
-    if ("withCredentials" in xhr) {
+function fetchShips(url) {
+    var timeToHideIt = document.getElementById('apiCallButton');
+    timeToHideIt.style.display = 'none';
 
-        // Check if the XMLHttpRequest object has a "withCredentials" property.
-        // "withCredentials" only exists on XMLHTTPRequest2 objects.
-        xhr.open(method, url, true);
-
-    } else if (typeof XDomainRequest != "undefined") {
-
-        // Otherwise, check if XDomainRequest.
-        // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
-        xhr = new XDomainRequest();
-        xhr.open(method, url);
-
-    } else {
-
-        // Otherwise, CORS is not supported by the browser.
-        xhr = null;
-
+    url = url.attributes.href.value;
+    if (url === undefined || url === 'null'){
+        url = '//swapi.co/api/starships/';
     }
-    if (!xhr) {
-        var chaoticList = document.getElementsByClassName('chaos_list');
-        chaoticList.innerHTML = "";
-        chaoticList.innerHTML = "CORS NOT SUPPORTED"
-    }
-}
+    var listOStuff = document.getElementById('listOfStuff');
+    listOStuff.innerHTML = "";
+    var details = document.getElementById('details');
+    details.innerHTML = "";
+    var prev = document.getElementById('prev-button');
+    var next = document.getElementById('next-button');
 
-function createElement (element) {
-    var chaoticList = document.getElementsByClassName('chaos_list');
-    chaoticList.innerHTML = "";
-    var listItem = document.createElement('li');
-    var link = document.createElement('a');
-    link.setAttribute('href', element.url);
-    listItem.innerHTML = element.name;
-    link.addEventListener('click', function(event){
-        getDetails(element.url);
+    //call getJSON function to get the list of ships from the api
+    getJSON(url).then(function (data) {
+        for (var node in data) {
+            if (node === 'next') {
+                next.setAttribute('href', data[node]);
+                next.style.visibility = 'visible';
+            } else if (node === 'previous') {
+                prev.setAttribute('href', data[node]);
+                prev.style.visibility = 'visible';
+            }
+        }
+
+        var results = data.results;
+
+        results.forEach(function(item){
+            var listItem = document.createElement('li');
+            var link = document.createElement('a');
+            link.setAttribute('href', item.url);
+            listItem.innerHTML = item.name;
+            listItem.addEventListener('click', function(event){
+                details.innerHTML = "";
+                getJSON(item.url).then(function (dat) {
+                    for (var key in dat) {
+                        var entry = document.createElement('p');
+                        if (key === 'films') {
+                            var appearances = dat[key];
+                            for (var appearance in appearances) {
+                                getJSON(appearances[appearance]).then(function (da) {
+                                    entry.innerHTML += "<b>Appeared in:</b> " + da.title + "<br />";
+                                });
+                            }
+                        } else {
+                            entry.innerHTML += "<b>" + key + ":</b> " + dat[key] + "<br />";
+                        }
+                        if (entry.innerHTML !== "") {
+                            details.appendChild(entry);
+                        }
+                    }
+                });
+            });
+            listItem.appendChild(link);
+            listOStuff.appendChild(listItem);
+        });
     });
-    listItem.appendChild(link);
-    chaoticList.appendChild(listItem);
-}
-
-function getDetails(url) {
-
 }

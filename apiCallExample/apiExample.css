@@ -1,0 +1,47 @@
+#next-button, #prev-button {
+    visibility: hidden;
+}
+
+body {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 3fr auto;
+    grid-template-areas:
+            "head head head head head head"
+            "main main main main main main";
+    justify-items: stretch;
+}
+header {
+    width: 100%;
+    grid-area: head;
+    font-size: 2em;
+    font-family: "Century Gothic";
+    background-color: rgba(11, 201, 7, 0.62);
+}
+
+main {
+    grid-area: main;
+    font-size: 1em;
+    font-family: "Baskerville Old Face";
+    background-color: rgba(24, 58, 157, 0.9);
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+button {
+    border-radius: 5%;
+    border: 1px solid black;
+    background-color: orangered;
+    font-size: 1em;
+    color: white;
+}
+button:hover {
+    text-decoration: underline;
+}
+
+#details {
+    padding-left: 15%;
+    color: orangered;
+    font-size: 2em;
+    text-align: center;
+}
