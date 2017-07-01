@@ -17,7 +17,7 @@ function fetchShips(url) {
 
     url = url.attributes.href.value;
     if (url === undefined || url === 'null'){
-        url = '//swapi.co/api/starships/';
+        url = 'https://swapi.co/api/starships/';
     }
     var listOStuff = document.getElementById('listOfStuff');
     listOStuff.innerHTML = "";
