@@ -41,9 +41,10 @@ button:hover {
 
 #details {
     padding-left: 15%;
-    color: orangered;
+    color: white;
     font-size: 2em;
-    text-align: center;
+    text-align: left;
+    width: 75%;
 }
 ul {
     list-style: none;
