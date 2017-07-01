@@ -45,3 +45,14 @@ button:hover {
     font-size: 2em;
     text-align: center;
 }
+ul {
+    list-style: none;
+}
+li {
+    font-size: 2em;
+}
+li:hover {
+    text-decoration: underline;
+    text-decoration-color: white;
+    color: white;
+}
