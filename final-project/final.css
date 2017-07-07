@@ -1,0 +1,125 @@
+@font-face {
+  font-family: body-font;
+  src: url("../fonts/hobbiton.ttf"); }
+@font-face {
+  font-family: title-font;
+  src: url("../fonts/ring-bearer.TTF"); }
+html, body {
+  height: 100%; }
+
+.home-link {
+  text-decoration: none;
+  font-size: 1em;
+  font-family: body-font; }
+  .home-link:hover {
+    text-decoration: underline; }
+
+body {
+  height: 100%;
+  background-image: url("../images/parchment-background.png");
+  background-size: cover; }
+
+.wrapper {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: "title title title title title" "pm mon sp npcg reg" "foot foot foot foot foot";
+  justify-content: space-between;
+  grid-column-gap: 3%;
+  align-items: center; }
+
+.container {
+  background-color: rgba(200, 0, 5, 0.75);
+  height: 25vmin;
+  border-radius: 10%;
+  border: 5px solid #ffc40d;
+  display: flex;
+  align-items: center;
+  padding: 1%; }
+  .container:hover {
+    background-color: #ff3f07; }
+  .container a {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    text-decoration: none;
+    font-family: title-font;
+    font-size: 2.4em; }
+    .container a:hover {
+      text-decoration: underline; }
+
+.party-manager {
+  grid-area: pm; }
+  .party-manager a {
+    color: #fff; }
+
+.monster-references {
+  grid-area: mon; }
+  .monster-references a {
+    color: #000; }
+
+.random-encounter-gen {
+  grid-area: reg; }
+  .random-encounter-gen a {
+    color: #fff; }
+
+.spell-references {
+  grid-area: sp; }
+  .spell-references a {
+    color: #fff; }
+
+.npc-gen {
+  grid-area: npcg; }
+  .npc-gen a {
+    color: #000; }
+
+.title {
+  margin: auto;
+  font-size: 8em;
+  font-family: title-font; }
+
+.titlebar1 {
+  grid-area: title; }
+
+.titlebar2 {
+  grid-area: foot; }
+
+.party-wrapper {
+  display: grid; }
+
+.party-head h1 {
+  font-family: title-font;
+  font-size: 5em;
+  margin: auto; }
+.party-head .navigator {
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between; }
+  .party-head .navigator li {
+    background-color: rgba(200, 0, 5, 0.75);
+    border-radius: 10%;
+    border: 5px solid #ffc40d;
+    height: 10vmin;
+    display: flex;
+    align-items: center;
+    padding: 1%; }
+    .party-head .navigator li:hover {
+      background-color: #ff3f07; }
+    .party-head .navigator li a {
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      margin: auto;
+      text-decoration: none;
+      font-family: title-font;
+      font-size: 2.4em;
+      color: #000; }
+      .party-head .navigator li a:hover {
+        text-decoration: underline; }
+.party-head .party-main {
+  display: flex;
+  flex-flow: row nowrap; }
+
+/*# sourceMappingURL=final.css.map */

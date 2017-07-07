@@ -1,0 +1,166 @@
+@font-face { font-family: body-font; src: url('../fonts/hobbiton.ttf'); }
+@font-face { font-family: title-font; src: url('../fonts/ring-bearer.TTF'); }
+
+$title: title-font;
+$body: body-font;
+
+$orangered: #ff3f07;
+$black: #000;
+$white: #fff;
+$transparent-yellow: rgba(144, 130, 5, 0.6);
+$darkred: rgba(200, 0, 5, 0.75);
+$faded-grey: rgba(100, 100, 100, 0.6);
+$faded-orange: rgba(162, 92, 17, 0.6);
+$brightred: rgb(255, 0, 14);
+$orange: rgb(255, 122, 17);
+$yellow: rgb(255, 238, 8);
+$green: rgb(0, 117, 9);
+$gray: rgb(49, 49, 49);
+$blue: rgb(6, 31, 160);
+$gold: rgb(255, 196, 13);
+
+
+//FINAL.HTML
+/////////////////////////////////////////////////
+html, body {
+  height: 100%;
+}
+
+.home-link {
+  text-decoration: none;
+  font-size: 1em;
+  font-family: $body;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+body {
+  height: 100%;
+  background-image: url("../images/parchment-background.png");
+  background-size: cover;
+}
+
+.wrapper {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+          "title title title title title"
+          "pm mon sp npcg reg"
+          "foot foot foot foot foot";
+  justify-content: space-between;
+  grid-column-gap: 3%;
+  align-items: center;
+}
+
+.container {
+  background-color: $darkred;
+  height: 25vmin;
+  border-radius: 10%;
+  border: 5px solid $gold;
+  display:flex;
+  align-items: center;
+  padding: 1%;
+  &:hover {
+    background-color: $orangered;
+  }
+  a{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    text-decoration: none;
+    font-family: $title;
+    font-size: 2.4em;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.party-manager {
+  grid-area: pm;
+  a{color: $white;}
+}
+
+.monster-references {
+  grid-area: mon;
+  a{color: $black;}
+}
+
+.random-encounter-gen {
+  grid-area: reg;
+  a{color: $white;}
+}
+
+.spell-references {
+  grid-area: sp;
+  a{color: $white;}
+}
+
+.npc-gen {
+  grid-area: npcg;
+  a{color: $black;}
+}
+
+.title {
+  margin: auto;
+  font-size: 8em;
+  font-family: $title;
+}
+.titlebar1 {
+  grid-area: title;
+}
+.titlebar2 {
+  grid-area: foot;
+}
+
+///////////////////////////////////////////////////////////////////
+//Party Management html
+//////////////////////////////////////////////////////////////////
+.party-wrapper {
+  display: grid;
+}
+.party-head {
+  h1 {
+    font-family: $title;
+    font-size: 5em;
+    margin:auto;
+  }
+  .navigator {
+    list-style: none;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    li {
+      background-color: $darkred;
+      border-radius: 10%;
+      border: 5px solid $gold;
+      height: 10vmin;
+      display:flex;
+      align-items: center;
+      padding: 1%;
+      &:hover {
+        background-color: $orangered;
+      }
+      a{
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        margin: auto;
+        text-decoration: none;
+        font-family: $title;
+        font-size: 2.4em;
+        color: $black;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .party-main {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+}

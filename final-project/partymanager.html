@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DMU - Party Manager</title>
+    <link rel="stylesheet" href="final.css">
+    <script src="final.js"></script>
+    <meta name="viewport" content="width=device-width">
+</head>
+<body>
+<div class="party-wrapper">
+    <header class="party-head">
+        <h1>Party Manager</h1>
+        <ul class="navigator">
+            <li><a href="final.html">Home</a></li>
+            <li><a href="monsters.html">Monsters</a></li>
+            <li><a href="spells.html">Spells</a></li>
+            <li><a href="npcgen.html">Npc Generator</a></li>
+            <li><a href="randomencounter.html">Random Encounters</a></li>
+        </ul>
+    </header>
+    <main class="party-main">
+        <section class="partyadd">
+            <label for="name">Character Name</label>
+            <input type="text" id="name" >
+            <label for="level">Character Level</label>
+            <input type="number" id="level">
+            <label for="other">Details/Notes</label>
+            <input type="text" id="other">
+            <button onclick="pushToDB()">Add Character</button>
+        </section>
+        <section class="partylist">
+            <ul class="listofparty">
+            </ul>
+            <button onclick="pullFromDB()">Refresh Party</button>
+        </section>
+    </main>
+</div>
+</body>
+</html>
