@@ -11,7 +11,7 @@ function pushToDB() {
     characterArray.push(entry);
 
     fetch('https://dungeon-master-utility.firebaseio.com/party.json', {
-        method: 'put',
+        method: 'post',
         body: JSON.stringify(characterArray)
     });
 }
@@ -30,7 +30,7 @@ function pullFromDB() {
     url = 'https://dungeon-master-utility.firebaseio.com/party.json';
     getJSON(url).then(function(data) {
         for (var node in data) {
-            console.log(node.value);
+            console.log(data[node]);
         }
     });
 }
