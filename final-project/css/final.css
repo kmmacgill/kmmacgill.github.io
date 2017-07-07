@@ -1,9 +1,9 @@
 @font-face {
   font-family: body-font;
-  src: url("../fonts/hobbiton.ttf"); }
+  src: url("../../fonts/hobbiton.ttf"); }
 @font-face {
   font-family: title-font;
-  src: url("../fonts/ring-bearer.TTF"); }
+  src: url("../../fonts/ring-bearer.TTF"); }
 html, body {
   height: 100%; }
 
@@ -16,7 +16,7 @@ html, body {
 
 body {
   height: 100%;
-  background-image: url("../images/parchment-background.png");
+  background-image: url("../../images/parchment-background.png");
   background-size: cover; }
 
 .wrapper {
@@ -84,42 +84,5 @@ body {
 
 .titlebar2 {
   grid-area: foot; }
-
-.party-wrapper {
-  display: grid; }
-
-.party-head h1 {
-  font-family: title-font;
-  font-size: 5em;
-  margin: auto; }
-.party-head .navigator {
-  list-style: none;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between; }
-  .party-head .navigator li {
-    background-color: rgba(200, 0, 5, 0.75);
-    border-radius: 10%;
-    border: 5px solid #ffc40d;
-    height: 10vmin;
-    display: flex;
-    align-items: center;
-    padding: 1%; }
-    .party-head .navigator li:hover {
-      background-color: #ff3f07; }
-    .party-head .navigator li a {
-      height: 100%;
-      width: 100%;
-      text-align: center;
-      margin: auto;
-      text-decoration: none;
-      font-family: title-font;
-      font-size: 2.4em;
-      color: #000; }
-      .party-head .navigator li a:hover {
-        text-decoration: underline; }
-.party-head .party-main {
-  display: flex;
-  flex-flow: row nowrap; }
 
 /*# sourceMappingURL=final.css.map */

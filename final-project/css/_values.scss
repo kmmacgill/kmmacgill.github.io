@@ -1,0 +1,20 @@
+@font-face { font-family: body-font; src: url('../../fonts/hobbiton.ttf'); }
+@font-face { font-family: title-font; src: url('../../fonts/ring-bearer.TTF'); }
+
+$title: title-font;
+$body: body-font;
+
+$orangered: #ff3f07;
+$black: #000;
+$white: #fff;
+$transparent-yellow: rgba(144, 130, 5, 0.6);
+$darkred: rgba(200, 0, 5, 0.75);
+$faded-grey: rgba(100, 100, 100, 0.6);
+$faded-orange: rgba(162, 92, 17, 0.6);
+$brightred: rgb(255, 0, 14);
+$orange: rgb(255, 122, 17);
+$yellow: rgb(255, 238, 8);
+$green: rgb(0, 117, 9);
+$gray: rgb(49, 49, 49);
+$blue: rgb(6, 31, 160);
+$gold: rgb(255, 196, 13);

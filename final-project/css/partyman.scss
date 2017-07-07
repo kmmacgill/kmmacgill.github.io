@@ -1,0 +1,46 @@
+@import 'values';
+.party-wrapper {
+  display: grid;
+}
+.party-head {
+  h1 {
+    font-family: $title;
+    font-size: 5em;
+    margin:auto;
+  }
+  .navigator {
+    list-style: none;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    li {
+      background-color: $darkred;
+      border-radius: 10%;
+      border: 5px solid $gold;
+      height: 10vmin;
+      display:flex;
+      align-items: center;
+      padding: 1%;
+      &:hover {
+        background-color: $orangered;
+      }
+      a{
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        margin: auto;
+        text-decoration: none;
+        font-family: $title;
+        font-size: 2.4em;
+        color: $black;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .party-main {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+}

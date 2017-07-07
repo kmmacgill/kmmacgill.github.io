@@ -1,0 +1,94 @@
+@import 'values';
+html, body {
+  height: 100%;
+}
+
+.home-link {
+  text-decoration: none;
+  font-size: 1em;
+  font-family: $body;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+body {
+  height: 100%;
+  background-image: url("../../images/parchment-background.png");
+  background-size: cover;
+}
+
+.wrapper {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+          "title title title title title"
+          "pm mon sp npcg reg"
+          "foot foot foot foot foot";
+  justify-content: space-between;
+  grid-column-gap: 3%;
+  align-items: center;
+}
+
+.container {
+  background-color: $darkred;
+  height: 25vmin;
+  border-radius: 10%;
+  border: 5px solid $gold;
+  display:flex;
+  align-items: center;
+  padding: 1%;
+  &:hover {
+    background-color: $orangered;
+  }
+  a{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    text-decoration: none;
+    font-family: $title;
+    font-size: 2.4em;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.party-manager {
+  grid-area: pm;
+  a{color: $white;}
+}
+
+.monster-references {
+  grid-area: mon;
+  a{color: $black;}
+}
+
+.random-encounter-gen {
+  grid-area: reg;
+  a{color: $white;}
+}
+
+.spell-references {
+  grid-area: sp;
+  a{color: $white;}
+}
+
+.npc-gen {
+  grid-area: npcg;
+  a{color: $black;}
+}
+
+.title {
+  margin: auto;
+  font-size: 8em;
+  font-family: $title;
+}
+.titlebar1 {
+  grid-area: title;
+}
+.titlebar2 {
+  grid-area: foot;
+}
