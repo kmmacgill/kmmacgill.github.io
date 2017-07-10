@@ -60,8 +60,7 @@ h1 {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
-  justify-items: center; }
+  justify-content: center; }
   .mon-wrapper .buttonsgalore {
     display: flex;
     flex-flow: row wrap;

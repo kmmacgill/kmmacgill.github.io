@@ -23,11 +23,11 @@
 
   .wrapper {
     text-align: center;
+    width: 100%;
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas: "title" "foot" "pm" "mon" "sp" "npcg" "reg";
-    justify-items: center;
     grid-column-gap: 3%;
     align-items: center; }
 
