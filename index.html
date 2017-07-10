@@ -2,28 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home Page | kmmacgill.github.io</title>
+    <title>Dungeon Master Utility</title>
+    <link rel="stylesheet" href="final-project/css/final.css">
     <meta name="viewport" content="width=device-width">
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Korey's Web page</h1>
-    </header>
-    <aside>
-        <div id="nav-placeholder"></div>
-        <script>
-            $(function(){
-               $("#nav-placeholder").load("nav.html");
-            });
-        </script>
-    </aside>
-    <main>
-        <h1>Home Page</h1>
-        <p>More coming soon as I fill in this page with lots of great stuff!</p>
-    </main>
-    <footer>
-        <small>Last Updated: 4/20/17</small>
-    </footer>
+<a class="home-link" href="home.html">Home</a>
+    <div class="wrapper">
+        <h1 class="title titlebar1">Dungeon Master</h1>
+        <section class="container party-manager">
+            <a href="final-project/partymanager.html">Party Management</a>
+        </section>
+        <section class="container monster-references">
+            <a href="final-project/monsters.html">Monsters</a>
+        </section>
+        <section class="container spell-references">
+           <a href="final-project/spells.html">Spells</a>
+        </section>
+        <section class="container npc-gen">
+            <a href="final-project/npcgen.html">NPC Generator</a>
+        </section>
+        <section class="container random-encounter-gen">
+            <a href="final-project/randomencounter.html">Random Encounters</a>
+        </section>
+        <h1 class="title titlebar2">Utility</h1>
+    </div>
 </body>
 </html>

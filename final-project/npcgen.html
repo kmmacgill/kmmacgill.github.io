@@ -2,9 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>DMU - NPC Generator</title>
+    <script src="javascript/final.js"></script>
+    <link rel="stylesheet" href="css/npc.css">
+    <meta name="viewport" content="width=device-width">
 </head>
 <body>
-
+<div class="npcwrapper">
+    <header class="party-head">
+        <h1>NPC Generator</h1>
+        <ul class="navigator">
+            <li><a id="home" href="../index.html">Home</a></li>
+            <li><a id="party" href="partymanager.html">Party Manager</a></li>
+            <li><a id="monster" href="monsters.html">Monsters</a></li>
+            <li><a id="spell" href="spells.html">Spells</a></li>
+            <li><a id="random" href="randomencounter.html">Random Encounters</a></li>
+        </ul>
+    </header>
+    <main>
+        <button onclick="generateNPC()">Generate</button>
+        <div class="randomChar">
+            <div class="sec-name">
+                <h1>Name: </h1>
+            <h2 id="name"></h2>
+            </div>
+            <div class="sec-race">
+                <h1>Race: </h1>
+            <h2 id="race"></h2>
+            </div>
+            <div class="sec-gender">
+                <h1>Gender: </h1>
+            <h2 id="gender"></h2>
+            </div>
+            <div class="sec-age">
+                <h1>Age: </h1>
+            <h2 id="age"></h2>
+            </div>
+            <div class="sec-class">
+                <h1>Class: </h1>
+            <h2 id="class"></h2>
+            </div>
+            <div class="sec-prof">
+                <h1>Profession: </h1>
+            <h2 id="profession"></h2>
+            </div>
+            <div class="sec-scores">
+                <h1>Ability Scores:</h1>
+                <div class="ind-scores">
+                    <h2 id="str">Strength: </h2>
+                    <h2 id="int">Intelligence: </h2>
+                    <h2 id="dex">Dexterity: </h2>
+                    <h2 id="wis">Wisdom: </h2>
+                    <h2 id="cha">Charisma: </h2>
+                    <h2 id="con">Constitution: </h2>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
 </body>
 </html>

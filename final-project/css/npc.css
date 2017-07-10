@@ -1,0 +1,121 @@
+@font-face {
+  font-family: body-font;
+  src: url("../../fonts/hobbiton.ttf"); }
+@font-face {
+  font-family: title-font;
+  src: url("../../fonts/ring-bearer.TTF"); }
+html, body {
+  height: 100%; }
+
+@media screen and (max-width: 825px) {
+  body {
+    font-size: 50%; } }
+@media screen and (min-width: 825.1px) {
+  body {
+    font-size: 75%; } }
+@media screen and (min-width: 1050px) {
+  body {
+    font-size: 100%; } }
+body {
+  height: 100%;
+  background-image: url("../../images/parchment-background.png");
+  background-size: cover;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  font-family: body-font; }
+
+.party-head {
+  text-align: center; }
+
+h1 {
+  font-family: title-font;
+  font-size: 5em; }
+
+.navigator {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between; }
+  .navigator li {
+    margin-left: 1%;
+    background-color: rgba(200, 0, 5, 0.75);
+    border-radius: 10%;
+    border: 5px solid #ffc40d;
+    height: 15vmin;
+    display: flex;
+    align-items: center;
+    padding: 1%; }
+    .navigator li:hover {
+      background-color: #ff3f07; }
+    .navigator li a {
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      margin: auto;
+      text-decoration: none;
+      font-family: title-font;
+      font-size: 2.4em;
+      color: #000; }
+      .navigator li a:hover {
+        text-decoration: underline; }
+
+.npcwrapper {
+  width: 100%; }
+
+main {
+  width: 100%; }
+  main button {
+    margin-left: 5%;
+    width: 25%;
+    border-radius: 15%;
+    border: 5px solid #ffc40d;
+    background-color: #061fa0;
+    color: #fff;
+    font-size: 2em;
+    font-family: body-font; }
+    main button:hover {
+      background-color: #000978; }
+  main h1 {
+    font-size: 3em; }
+  main h2 {
+    font-family: title-font; }
+  main .randomChar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "name race gender" "age clas prof" "scores scores scores"; }
+    main .randomChar .sec-name {
+      grid-area: name; }
+    main .randomChar .sec-race {
+      grid-area: race; }
+    main .randomChar .sec-gender {
+      grid-area: gender; }
+    main .randomChar .sec-age {
+      grid-area: age; }
+    main .randomChar .sec-class {
+      grid-area: clas; }
+    main .randomChar .sec-prof {
+      grid-area: prof; }
+    main .randomChar .sec-scores {
+      text-align: center;
+      grid-area: scores; }
+      main .randomChar .sec-scores .ind-scores {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas: "str dex con int wis cha"; }
+        main .randomChar .sec-scores .ind-scores h2 {
+          font-family: body-font; }
+        main .randomChar .sec-scores .ind-scores #str {
+          grid-area: str; }
+        main .randomChar .sec-scores .ind-scores #int {
+          grid-area: int; }
+        main .randomChar .sec-scores .ind-scores #dex {
+          grid-area: dex; }
+        main .randomChar .sec-scores .ind-scores #wis {
+          grid-area: wis; }
+        main .randomChar .sec-scores .ind-scores #cha {
+          grid-area: cha; }
+        main .randomChar .sec-scores .ind-scores #con {
+          grid-area: con; }
+
+/*# sourceMappingURL=npc.css.map */

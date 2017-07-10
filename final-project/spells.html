@@ -2,9 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>DMU - Spells</title>
+    <script src="javascript/final.js"></script>
+    <link rel="stylesheet" href="css/spells.css">
+    <meta name="viewport" content="width=device-width">
 </head>
 <body>
-
+<header class="spell-head">
+    <h1>Spells Reference</h1>
+    <ul class="navigator">
+        <li><a id="home" href="../index.html">Home</a></li>
+        <li><a id="party" href="partymanager.html">Party Manager</a></li>
+        <li><a id="npcgen" href="npcgen.html">NPC Generator</a></li>
+        <li><a id="monster" href="monsters.html">Monsters</a></li>
+        <li><a id="random" href="randomencounter.html">Random Encounters</a></li>
+    </ul>
+</header>
+<main>
+    <div class="spell-wrapper">
+        <div class="buttonsgalore">
+            <button id="a" onclick="getSpells(this.id)">A</button>
+            <button id="b" onclick="getSpells(this.id)">B</button>
+            <button id="c" onclick="getSpells(this.id)">C</button>
+            <button id="d" onclick="getSpells(this.id)">D</button>
+            <button id="e" onclick="getSpells(this.id)">E</button>
+            <button id="f" onclick="getSpells(this.id)">F</button>
+            <button id="g" onclick="getSpells(this.id)">G</button>
+            <button id="h" onclick="getSpells(this.id)">H</button>
+            <button id="i" onclick="getSpells(this.id)">I</button>
+            <button id="j" onclick="getSpells(this.id)">J</button>
+            <button id="k" onclick="getSpells(this.id)">K</button>
+            <button id="l" onclick="getSpells(this.id)">L</button>
+            <button id="m" onclick="getSpells(this.id)">M</button>
+            <button id="n" onclick="getSpells(this.id)">N</button>
+            <button id="o" onclick="getSpells(this.id)">O</button>
+            <button id="p" onclick="getSpells(this.id)">P</button>
+            <button id="q" onclick="getSpells(this.id)">Q</button>
+            <button id="r" onclick="getSpells(this.id)">R</button>
+            <button id="s" onclick="getSpells(this.id)">S</button>
+            <button id="t" onclick="getSpells(this.id)">T</button>
+            <button id="u" onclick="getSpells(this.id)">U</button>
+            <button id="v" onclick="getSpells(this.id)">V</button>
+            <button id="w" onclick="getSpells(this.id)">W</button>
+            <button id="x" onclick="getSpells(this.id)">X</button>
+            <button id="y" onclick="getSpells(this.id)">Y</button>
+            <button id="z" onclick="getSpells(this.id)">Z</button>
+        </div>
+        <div class="spellsgalore">
+            <section class="spellselect">
+                <ul id="listselect">
+                </ul>
+            </section>
+            <section class="spelldetail">
+                <ul id="spellcharacteristics">
+                </ul>
+            </section>
+        </div>
+    </div>
+</main>
 </body>
 </html>

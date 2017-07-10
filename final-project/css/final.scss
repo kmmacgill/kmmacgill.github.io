@@ -3,6 +3,7 @@
 @media screen and (max-width: 550px) {
   html, body {
     height: 100%;
+    min-width:400px;
   }
 
   .home-link {
@@ -21,6 +22,7 @@
   }
 
   .wrapper {
+    text-align: center;
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
@@ -230,6 +232,7 @@
     height: 100%;
     background-image: url("../../images/parchment-background.png");
     background-size: cover;
+    display: flex;
   }
 
   .wrapper {
@@ -237,8 +240,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas: "title title title title title" "pm mon sp npcg reg" "foot foot foot foot foot";
-    justify-content: space-around;
-    grid-column-gap: 1%;
+    justify-content: space-between;
+    grid-column-gap: 3%;
+    align-items: center;
   }
 
   .container {
@@ -247,7 +251,6 @@
     border-radius: 10%;
     border: 5px solid $gold;
     display: flex;
-    align-items: center;
     padding: 1%;
     &:hover {
       background-color: $orangered;

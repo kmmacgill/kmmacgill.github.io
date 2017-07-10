@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>DMU - Party Manager</title>
-    <link rel="stylesheet" href="css/final.css">
+    <link rel="stylesheet" href="css/partyman.css">
     <script src="javascript/final.js"></script>
     <meta name="viewport" content="width=device-width">
 </head>
@@ -12,27 +12,33 @@
     <header class="party-head">
         <h1>Party Manager</h1>
         <ul class="navigator">
-            <li><a href="final.html">Home</a></li>
-            <li><a href="monsters.html">Monsters</a></li>
-            <li><a href="spells.html">Spells</a></li>
-            <li><a href="npcgen.html">Npc Generator</a></li>
-            <li><a href="randomencounter.html">Random Encounters</a></li>
+            <li><a id="home" href="../index.html">Home</a></li>
+            <li><a id="monster" href="monsters.html">Monsters</a></li>
+            <li><a id="spell" href="spells.html">Spells</a></li>
+            <li><a id="npcgen" href="npcgen.html">Npc Generator</a></li>
+            <li><a id="random" href="randomencounter.html">Random Encounters</a></li>
         </ul>
     </header>
     <main class="party-main">
         <section class="partyadd">
             <label for="name">Character Name</label>
-            <input type="text" id="name" >
+            <input type="text" id="name" maxlength="15">
             <label for="level">Character Level</label>
-            <input type="number" id="level">
+            <input type="number" id="level" max="20">
             <label for="other">Details/Notes</label>
-            <input type="text" id="other">
-            <button onclick="pushToDB()">Add Character</button>
+            <input id="other" placeholder="Enter Notes here..." maxlength="20">
+            <button onclick="pushToDB()">Add</button>
         </section>
         <section class="partylist">
-            <ul class="listofparty">
-            </ul>
             <button onclick="pullFromDB()">Refresh Party</button>
+            <table id="listofparty">
+                <tr>
+                    <th>Character Name</th>
+                    <th>|Character Level</th>
+                    <th>|Details/Notes</th>
+                    <th>|remove character</th>
+                </tr>
+            </table>
         </section>
     </main>
 </div>

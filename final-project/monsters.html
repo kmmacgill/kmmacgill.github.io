@@ -2,9 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>DMU - Monster Reference</title>
+    <script src="javascript/final.js"></script>
+    <link rel="stylesheet" href="css/monster.css">
+    <meta name="viewport" content="width=device-width">
+
 </head>
 <body>
-
+<header class="monster-head">
+    <h1>Monster Reference</h1>
+    <ul class="navigator">
+        <li><a id="home" href="../index.html">Home</a></li>
+        <li><a id="party" href="partymanager.html">Party Manager</a></li>
+        <li><a id="npcgen" href="npcgen.html">NPC Generator</a></li>
+        <li><a id="spell" href="spells.html">Spells</a></li>
+        <li><a id="random" href="randomencounter.html">Random Encounters</a></li>
+    </ul>
+</header>
+<main>
+    <div class="mon-wrapper">
+        <div class="buttonsgalore">
+            <button id="a" onclick="getMonsters(this.id)">A</button>
+            <button id="b" onclick="getMonsters(this.id)">B</button>
+            <button id="c" onclick="getMonsters(this.id)">C</button>
+            <button id="d" onclick="getMonsters(this.id)">D</button>
+            <button id="e" onclick="getMonsters(this.id)">E</button>
+            <button id="f" onclick="getMonsters(this.id)">F</button>
+            <button id="g" onclick="getMonsters(this.id)">G</button>
+            <button id="h" onclick="getMonsters(this.id)">H</button>
+            <button id="i" onclick="getMonsters(this.id)">I</button>
+            <button id="j" onclick="getMonsters(this.id)">J</button>
+            <button id="k" onclick="getMonsters(this.id)">K</button>
+            <button id="l" onclick="getMonsters(this.id)">L</button>
+            <button id="m" onclick="getMonsters(this.id)">M</button>
+            <button id="n" onclick="getMonsters(this.id)">N</button>
+            <button id="o" onclick="getMonsters(this.id)">O</button>
+            <button id="p" onclick="getMonsters(this.id)">P</button>
+            <button id="q" onclick="getMonsters(this.id)">Q</button>
+            <button id="r" onclick="getMonsters(this.id)">R</button>
+            <button id="s" onclick="getMonsters(this.id)">S</button>
+            <button id="t" onclick="getMonsters(this.id)">T</button>
+            <button id="u" onclick="getMonsters(this.id)">U</button>
+            <button id="v" onclick="getMonsters(this.id)">V</button>
+            <button id="w" onclick="getMonsters(this.id)">W</button>
+            <button id="x" onclick="getMonsters(this.id)">X</button>
+            <button id="y" onclick="getMonsters(this.id)">Y</button>
+            <button id="z" onclick="getMonsters(this.id)">Z</button>
+        </div>
+        <div class="monstergalore">
+            <section class="monsterselect">
+                <ul id="listselect">
+                </ul>
+            </section>
+            <section class="monsterdetail">
+                <ul id="monstercharacteristics">
+                </ul>
+            </section>
+        </div>
+    </div>
+</main>
 </body>
 </html>

@@ -1,0 +1,153 @@
+@import 'values';
+
+html, body {
+  height: 100%;
+}
+
+@media screen and (max-width: 825px) {
+  body{
+    font-size: 50%;
+  }
+}
+@media screen and (min-width: 825.1px) {
+  body{
+    font-size: 75%;
+  }
+}
+@media screen and (min-width: 1050px) {
+  body{
+    font-size: 100%;
+  }
+}
+
+body {
+  height: 100%;
+  background-image: url("../../images/parchment-background.png");
+  background-size: cover;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  font-family: $body;
+}
+
+.party-head{
+  text-align: center;
+}
+
+h1 {
+  font-family: $title;
+  font-size: 5em;
+}
+.navigator {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  li {
+    margin-left: 1%;
+    background-color: $darkred;
+    border-radius: 10%;
+    border: 5px solid $gold;
+    height: 15vmin;
+    display:flex;
+    align-items: center;
+    padding: 1%;
+    &:hover {
+      background-color: $orangered;
+    }
+    a{
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      margin: auto;
+      text-decoration: none;
+      font-family: $title;
+      font-size: 2.4em;
+      color: $black;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+.npcwrapper{
+  width:100%;
+}
+main {
+  width:100%;
+  button {
+    margin-left: 5%;
+    width: 25%;
+    border-radius: 15%;
+    border: 5px solid $gold;
+    background-color: $blue;
+    &:hover {
+      background-color: $darkblue;
+    }
+    color: $white;
+    font-size: 2em;
+    font-family: $body;
+  }
+  h1{
+    font-size: 3em;
+  }
+  h2 {
+    font-family: $title;
+  }
+  .randomChar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+            "name race gender"
+            "age clas prof"
+            "scores scores scores";
+    .sec-name {
+      grid-area: name;
+    }
+    .sec-race {
+      grid-area: race;
+    }
+    .sec-gender{
+      grid-area: gender;
+    }
+    .sec-age {
+      grid-area: age;
+    }
+    .sec-class {
+      grid-area: clas;
+    }
+    .sec-prof {
+      grid-area: prof;
+    }
+    .sec-scores {
+      text-align: center;
+      grid-area: scores;
+      .ind-scores {
+        h2{
+          font-family: $body;
+        }
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas: "str dex con int wis cha";
+        #str {
+          grid-area: str;
+        }
+        #int {
+          grid-area: int;
+        }
+        #dex {
+          grid-area: dex;
+        }
+        #wis {
+          grid-area: wis;
+        }
+        #cha {
+          grid-area: cha;
+        }
+        #con {
+          grid-area: con;
+        }
+      }
+    }
+  }
+}

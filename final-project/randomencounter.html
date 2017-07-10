@@ -2,11 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>DMU - Random Encounters</title>
+    <script src="javascript/final.js"></script>
+    <link rel="stylesheet" href="css/random.css">
+    <meta name="viewport" content="width=device-width">
 </head>
 <body>
-    <header>
-
+    <header class="random-head">
+        <h1>Random Encounter</h1>
+        <ul class="navigator">
+            <li><a id="home" href="../index.html">Home</a></li>
+            <li><a id="party" href="partymanager.html">Party Manager</a></li>
+            <li><a id="npcgen" href="npcgen.html">NPC Generator</a></li>
+            <li><a id="monster" href="monsters.html">Monsters</a></li>
+            <li><a id="random" href="spells.html">Spells</a></li>
+        </ul>
     </header>
+    <main>
+        <div class="random-wrapper">
+            <section class="buttonslist">
+                <a id="easy" href="#" onclick="randomEnc(this.id)">Easy</a>
+                <a id="norm" href="#" onclick="randomEnc(this.id)">Medium</a>
+                <a id="hard" href="#" onclick="randomEnc(this.id)">Hard</a>
+                <a id="dead" href="#" onclick="randomEnc(this.id)">Deadly</a>
+            </section>
+            <section id="encounterdetails">
+
+            </section>
+        </div>
+    </main>
 </body>
 </html>

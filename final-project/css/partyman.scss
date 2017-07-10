@@ -1,23 +1,53 @@
 @import 'values';
-.party-wrapper {
-  display: grid;
+
+html, body {
+  height: 100%;
+  font-family: $title;
+}
+
+@media screen and (max-width: 825px) {
+  body{
+    font-size: 50%;
+  }
+}
+@media screen and (min-width: 825.1px) {
+  body{
+    font-size: 75%;
+  }
+}
+@media screen and (min-width: 1050px) {
+  body{
+    font-size: 100%;
+  }
+}
+body {
+  height: 100%;
+  background-image: url("../../images/parchment-background.png");
+  background-size: cover;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+}
+.party-wrapper{
+  width:100%;
 }
 .party-head {
+  text-align: center;
   h1 {
     font-family: $title;
     font-size: 5em;
-    margin:auto;
   }
   .navigator {
     list-style: none;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
     li {
+      margin-left: 1%;
       background-color: $darkred;
       border-radius: 10%;
       border: 5px solid $gold;
-      height: 10vmin;
+      height: 15vmin;
       display:flex;
       align-items: center;
       padding: 1%;
@@ -39,8 +69,100 @@
       }
     }
   }
-  .party-main {
+}
+
+.party-main {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  .partyadd {
+    background-color: $transparent-yellow;
+    border-radius: 5%;
+    border: 3px solid $gold;
+    width: 40%;
+    font-size:3em;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
+    justify-items: center;
+    justify-content: space-around;
+    input {
+      height: 10%;
+      width: 80%;
+      margin: auto;
+    }
+    #other {
+      height: 50%;
+      width: 95%;
+      margin:auto;
+    }
+    button {
+      margin-left: 15%;
+      margin-top: 10%;
+      padding-top:2%;
+      padding-bottom: 10%;
+      height: 50%;
+      width: 80%;
+      font-size: 105%;
+      border-radius: 15%;
+      border: 5px solid $gold;
+      background-color: $darkred;
+      &:hover {
+        background-color: $orangered;
+      }
+    }
+  }
+  .partylist {
+    background-color: $transparent-yellow;
+    border-radius: 5%;
+    border: 3px solid $gold;
+    width: 60%;
+    height: 100%;
+    font-size: 2em;
+    td {
+      text-align: center;
+    }
+    button {
+      margin-left: 15%;
+      height: 25%;
+      width: 30%;
+      font-size: 1.1em;
+      border-radius: 15%;
+      border: 5px solid $gold;
+      background-color: $darkred;
+      &:hover {
+        background-color: $orangered;
+      }
+    }
+    .deletebutton {
+      width: 80%;
+    }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
