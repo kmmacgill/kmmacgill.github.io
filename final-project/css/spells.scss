@@ -86,10 +86,51 @@ h1 {
       list-style: none;
     }
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     .spellselect {
       display: flex;
       flex-flow: row wrap;
+      #listselect{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+      }
+      .spellSelectButton{
+        font-size: 2em;
+        text-decoration: none;
+        background-color: $green;
+        color: $gold;
+        border: 1px solid $gray;
+        border-radius: 5%;
+      }
+    }
+    .spelldetail{
+      #spellcharacteristics{
+        display: flex;
+        flex-flow: row wrap;
+        .entry {
+          margin-right: 2%;
+          text-align: center;
+          background-color: $transparent-yellow;
+          border: 1px solid $black;
+          border-radius: 5%;
+        }
+        .subentry {
+          border: 1px solid $black;
+          border-radius: 10%;
+          text-align: center;
+          background-color: $transparent-yellow;
+        }
+      }
     }
   }
 }
+
+
+
+
+
+
+
+
+

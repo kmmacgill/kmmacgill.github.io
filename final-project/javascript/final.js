@@ -446,21 +446,26 @@ function getMonsterDetails(mon) {
                                 for (var thing in subnode){
                                     var subsub = subnode[thing];
                                     var onemorething = createElement('ul','');
+                                    onemorething.setAttribute('class','subentry');
                                     for(var otherthing in subsub) {
                                         var anothertemp = createElement('li','');
-                                        anothertemp.innerHTML = "<h5>" + otherthing + "</h5>" + subsub[otherthing];
+                                        anothertemp.innerHTML = "<h2>" + otherthing + "</h2>" + "<h3>"+subsub[otherthing]+"</h3";
                                         onemorething.appendChild(anothertemp);
                                     }
                                     othertempslistitem.appendChild(onemorething);
                                     othertemp.appendChild(othertempslistitem);
                                 }
                                 var toDisplay = othertemp.innerHTML;
-                                temp.innerHTML = "<h4>" + node + "</h4>" + toDisplay;
+                                temp.innerHTML = "<h2>" + node + "</h2>" + "<h3>"+toDisplay+"</h3>";
                                 monsters.appendChild(temp);
                             } else {
-                            temp.innerHTML = "<h4>" + node + "</h4>" + parseIt[node];
-                            monsters.appendChild(temp);
-                        }
+                                //only show what isn't blank
+                                if (parseIt[node]) {
+                                    temp.innerHTML = "<h2>" + node + "</h2>" + "<h3>"+parseIt[node]+"</h3>";
+                                    temp.setAttribute('class','entry');
+                                    monsters.appendChild(temp);
+                                }
+                            }
                     }
                 }
             }
@@ -481,8 +486,10 @@ function getMonsters(value) {
         for (var item = 0; item < data.length; item++) {
             if (data[item].name.charAt(0).toLowerCase() === value) {
                 var temp1 = createElement('li', '');
-                var temp2 = createElement('button',''+data[item].name);
+                var temp2 = createElement('a',''+ data[item].name);
                 temp2.setAttribute('onclick','getMonsterDetails(\''+ data[item].name + '\')');
+                temp2.setAttribute('class','monsterSelectButton');
+                temp2.setAttribute('href','#');
                 temp1.appendChild(temp2);
                 monsterselector.appendChild(temp1);
             }
@@ -516,19 +523,21 @@ function getSpellDetails(spell) {
                             for (var thing in subnode){
                                 var subsub = subnode[thing];
                                 var onemorething = createElement('ul','');
+                                onemorething.setAttribute('class','subentry');
                                 for(var otherthing in subsub) {
                                     var anothertemp = createElement('li','');
-                                    anothertemp.innerHTML = "<h5>" + otherthing + "</h5>" + subsub[otherthing];
+                                    anothertemp.innerHTML = "<h2>" + otherthing + "</h2>" + "<h3>"+subsub[otherthing]+"</h3>";
                                     onemorething.appendChild(anothertemp);
                                 }
                                 othertempslistitem.appendChild(onemorething);
                                 othertemp.appendChild(othertempslistitem);
                             }
                             var toDisplay = othertemp.innerHTML;
-                            temp.innerHTML = "<h4>" + node + "</h4>" + toDisplay;
+                            temp.innerHTML = "<h2>" + node + "</h2>" + "<h3>"+toDisplay+"</h3>";
                             spells.appendChild(temp);
                         } else {
-                            temp.innerHTML = "<h4>" + node + "</h4>" + parseIt[node];
+                            temp.innerHTML = "<h2>" + node + "</h2>" + "<h3>"+parseIt[node]+"</h3>";
+                            temp.setAttribute('class','entry');
                             spells.appendChild(temp);
                         }
                     }
@@ -553,6 +562,8 @@ function getSpells(value) {
                 var temp1 = createElement('li', '');
                 var temp2 = createElement('button',''+data[item].name);
                 temp2.setAttribute('onclick','getSpellDetails(\''+ data[item].name + '\')');
+                temp2.setAttribute('class','spellSelectButton');
+                temp2.setAttribute('href','#');
                 temp1.appendChild(temp2);
                 spellselector.appendChild(temp1);
             }
@@ -714,6 +725,11 @@ function generateEncounter(threshHold){
             var temp = createElement('h3','');
             temp.innerHTML = '<h3>' + monstersForEncounter[x][1] + ' ' + monstersForEncounter[x][0]['name'] + isplural +'</h3>';
             encounter.appendChild(temp);
+        }
+        if (!encounter.hasChildNodes()){
+            var error = createElement('h3','');
+            error.innerHTML = 'There is no party loaded into the system, please load a party into the system to generate encounters.';
+            encounter.appendChild(error);
         }
     });
 }
