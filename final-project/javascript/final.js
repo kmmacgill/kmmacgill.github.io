@@ -261,22 +261,22 @@ function generateProfession(){
 function generateScores() {
     var str = Math.floor((Math.random() * 20) + 1);
     if (str < 5){str = 5;}
-    document.getElementById('str').innerHTML = "Strength: " + str;
+    document.getElementById('str').innerHTML = "<h3>Strength:</h3> " + str;
     var int = Math.floor((Math.random() * 20) + 1);
     if (int < 5){int = 5;}
-    document.getElementById('int').innerHTML = "Intelligence: " + int;
+    document.getElementById('int').innerHTML = "<h3>Intelligence:</h3> " + int;
     var dex = Math.floor((Math.random() * 20) + 1);
     if (dex < 5){dex = 5;}
-    document.getElementById('dex').innerHTML = "Dexterity: " + dex;
+    document.getElementById('dex').innerHTML = "<h3>Dexterity:</h3> " + dex;
     var cha = Math.floor((Math.random() * 20) + 1);
     if (cha < 5){cha = 5;}
-    document.getElementById('cha').innerHTML = "Charisma: " + cha;
+    document.getElementById('cha').innerHTML = "<h3>Charisma:</h3> " + cha;
     var wis = Math.floor((Math.random() * 20) + 1);
     if (wis < 5){wis = 5;}
-    document.getElementById('wis').innerHTML = "Wisdom: " + wis;
+    document.getElementById('wis').innerHTML = "<h3>Wisdom:</h3> " + wis;
     var con = Math.floor((Math.random() * 20) + 1);
     if (con < 5){con = 5;}
-    document.getElementById('con').innerHTML = "Constitution: " + con;
+    document.getElementById('con').innerHTML = "<h3>Constitution:</h3> " + con;
 }
 
 function pushToDB() {
@@ -449,7 +449,7 @@ function getMonsterDetails(mon) {
                                     onemorething.setAttribute('class','subentry');
                                     for(var otherthing in subsub) {
                                         var anothertemp = createElement('li','');
-                                        anothertemp.innerHTML = "<h2>" + otherthing + "</h2>" + "<h3>"+subsub[otherthing]+"</h3";
+                                        anothertemp.innerHTML = "<h2>" + otherthing + "</h2>" + "<h3>"+subsub[otherthing]+"</h3>";
                                         onemorething.appendChild(anothertemp);
                                     }
                                     othertempslistitem.appendChild(onemorething);
@@ -606,7 +606,7 @@ var xpMultipliers = [
 
 var challengeRatingtoXpValues = [
 ['0',10],
-['1/4', 11500],
+['14', 11500],
 ['1/8', 25],
 ['15', 13000],
 ['1/4', 50],

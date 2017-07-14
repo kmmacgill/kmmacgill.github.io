@@ -26,11 +26,15 @@ body {
   background-size: cover;
   display: flex;
   justify-content: center;
+  button{
+    font-family: $title;
+  }
 }
 .party-wrapper{
   width:100%;
 }
 .party-head {
+  width: 100%;
   text-align: center;
   h1 {
     font-family: $title;
@@ -40,13 +44,10 @@ body {
     list-style: none;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
     li {
-      margin-left: 1%;
       background-color: $darkred;
       border-radius: 10%;
       border: 5px solid $gold;
-      height: 15vmin;
       display:flex;
       align-items: center;
       padding: 1%;
@@ -83,6 +84,7 @@ body {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
+    text-align: center;
     input {
       height: 10%;
       width: 80%;
@@ -115,7 +117,7 @@ body {
     border: 3px solid $gold;
     width: 60%;
     height: 100%;
-    font-size: 2em;
+    font-size: 1.3em;
     td {
       text-align: center;
     }
@@ -123,7 +125,9 @@ body {
       margin-left: 15%;
       height: 25%;
       width: 30%;
-      font-size: 1.1em;
+      font-size: 1em;
+      padding-right: 2%;
+      padding-left: 0;
       border-radius: 15%;
       border: 5px solid $gold;
       background-color: $darkred;

@@ -9,11 +9,17 @@
     height: 100%;
     min-width: 400px; }
 
-  .home-link {
+  footer .home-link {
+    text-decoration: none;
+    font-size: 2em;
+    font-family: body-font; }
+    footer .home-link:hover {
+      text-decoration: underline; }
+  footer .plan-link {
     text-decoration: none;
     font-size: 1em;
-    font-family: body-font; }
-    .home-link:hover {
+    font-family: title-font; }
+    footer .plan-link:hover {
       text-decoration: underline; }
 
   body {

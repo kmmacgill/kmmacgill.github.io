@@ -36,12 +36,10 @@ h1 {
   list-style: none;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
   li {
     background-color: $darkred;
     border-radius: 10%;
     border: 5px solid $gold;
-    height: 15vmin;
     display:flex;
     align-items: center;
     padding: 1%;
