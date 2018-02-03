@@ -87,6 +87,28 @@ h1 {
       }
     }
   }
+  .climate {
+    ul{
+      list-style-type: none;
+      display: flex;
+      flex-flow: row wrap;
+      li{
+        font-family: $body;
+        font-size: 2em;
+        text-align: center;
+        margin-left: 3%;
+        a{
+          background-color: $orange;
+          border-radius: 5%;
+          text-decoration: none;
+          color: $black;
+          &:hover {
+            background-color: $brightred;
+          }
+        }
+      }
+    }
+  }
   #encounterdetails {
     font-size: 3em;
   }

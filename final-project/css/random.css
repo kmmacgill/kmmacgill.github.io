@@ -74,6 +74,22 @@ h1 {
       .random-wrapper .buttonslist a:hover {
         text-decoration: underline;
         color: rgba(200, 0, 5, 0.75); }
+  .random-wrapper .climate ul {
+    list-style-type: none;
+    display: flex;
+    flex-flow: row wrap; }
+    .random-wrapper .climate ul li {
+      font-family: body-font;
+      font-size: 2em;
+      text-align: center;
+      margin-left: 3%; }
+      .random-wrapper .climate ul li a {
+        background-color: #ff7a11;
+        border-radius: 5%;
+        text-decoration: none;
+        color: #000; }
+        .random-wrapper .climate ul li a:hover {
+          background-color: #ff000e; }
   .random-wrapper #encounterdetails {
     font-size: 3em; }
 

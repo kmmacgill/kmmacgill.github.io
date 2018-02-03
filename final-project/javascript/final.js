@@ -2,7 +2,8 @@
  * Created by kmmac on 7/6/2017.
  */
 var characterArray = [];
-
+var api = 'http://www.dnd5eapi.co/api/';
+var climateCreatures = null;
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -59,10 +60,10 @@ var races = [
     "Dwarf: Mountain","Dwarf: Hill","Dwarf: Mountain","Dwarf: Hill","Dwarf: Mountain","Dwarf: Hill",
     "Dwarf: Mountain","Dwarf: Hill","Dwarf: Mountain","Dwarf: Hill","Dwarf: Mountain","Dwarf: Hill",
     "Dwarf: Mountain","Dwarf: Hill","Dwarf: Mountain","Dwarf: Hill","Dwarf: Mountain","Dwarf: Hill",
-    "Elf: High","Elf: Wood","Elf: Drow","Elf: High","Elf: Wood","Elf: Drow",
-    "Elf: High","Elf: Wood","Elf: Drow","Elf: High","Elf: Wood","Elf: Drow",
-    "Elf: High","Elf: Wood","Elf: Drow","Elf: High","Elf: Wood","Elf: Drow",
-    "Elf: High","Elf: Wood","Elf: Drow","Elf: High","Elf: Wood","Elf: Drow",
+    "Elf: High","Elf: Wood","Elf: High","Elf: Wood","Elf: High","Elf: Wood","Elf: Drow",
+    "Elf: High","Elf: Wood","Elf: High","Elf: Wood","Elf: High","Elf: Wood","Elf: Drow",
+    "Elf: High","Elf: Wood","Elf: High","Elf: Wood","Elf: High","Elf: Wood","Elf: Drow",
+    "Elf: High","Elf: Wood","Elf: High","Elf: Wood","Elf: High","Elf: Wood","Elf: Drow",
     "Gnome: Forest","Gnome: Mountain","Gnome: Forest","Gnome: Mountain","Gnome: Forest","Gnome: Mountain",
     "Gnome: Forest","Gnome: Mountain","Gnome: Forest","Gnome: Mountain","Gnome: Forest","Gnome: Mountain",
     "Gnome: Forest","Gnome: Mountain","Gnome: Forest","Gnome: Mountain","Gnome: Forest","Gnome: Mountain",
@@ -425,69 +426,65 @@ function createElement (tag,text) {
     return el;
 }
 
-function getMonsterDetails(mon) {
+function getMonsterDetails(url) {
     var monsters = document.getElementById('monstercharacteristics');
     monsters.innerHTML = "";
-    fetch('https://dl.dropboxusercontent.com/s/iwz112i0bxp2n4a/5e-SRD-Monsters.json', {
+    fetch(url, {
         method: 'get'
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
-        for (var item = 0; item < data.length; item++) {
-            if (data[item].name === mon) {
-                var parseIt = data[item];
-                for(var node in parseIt){
-                    var temp = createElement('li','');
-                        if (parseIt.hasOwnProperty(node)) {
-                            if (Array.isArray(parseIt[node])){
-                                var subnode = parseIt[node];
-                                var othertemp = createElement('ul','');
-                                var othertempslistitem = createElement('li','');
-                                for (var thing in subnode){
-                                    var subsub = subnode[thing];
-                                    var onemorething = createElement('ul','');
-                                    onemorething.setAttribute('class','subentry');
-                                    for(var otherthing in subsub) {
-                                        var anothertemp = createElement('li','');
-                                        anothertemp.innerHTML = "<h2>" + otherthing + "</h2>" + "<h3>"+subsub[otherthing]+"</h3>";
-                                        onemorething.appendChild(anothertemp);
-                                    }
-                                    othertempslistitem.appendChild(onemorething);
-                                    othertemp.appendChild(othertempslistitem);
-                                }
-                                var toDisplay = othertemp.innerHTML;
-                                temp.innerHTML = "<h2>" + node + "</h2>" + "<h3>"+toDisplay+"</h3>";
-                                monsters.appendChild(temp);
-                            } else {
-                                //only show what isn't blank
-                                if (parseIt[node]) {
-                                    temp.innerHTML = "<h2>" + node + "</h2>" + "<h3>"+parseIt[node]+"</h3>";
-                                    temp.setAttribute('class','entry');
-                                    monsters.appendChild(temp);
-                                }
-                            }
+        for(var node in data) {
+            if (node !== '_id' && node !== 'index' && node !== 'url') {
+                var temp = createElement('li', '');
+                if (Array.isArray(data[node])) {
+                    var subnode = data[node];
+                    var othertemp = createElement('ul', '');
+                    var othertempslistitem = createElement('li', '');
+                    for (var thing in subnode) {
+                        var subsub = subnode[thing];
+                        var onemorething = createElement('ul', '');
+                        onemorething.setAttribute('class', 'subentry');
+                        for (var otherthing in subsub) {
+                            var anothertemp = createElement('li', '');
+                            anothertemp.innerHTML = "<h2>" + otherthing.replace('_',' ') + "</h2>" + "<h3>" + subsub[otherthing] + "</h3>";
+                            onemorething.appendChild(anothertemp);
+                        }
+                        othertempslistitem.appendChild(onemorething);
+                        othertemp.appendChild(othertempslistitem);
+                    }
+                    var toDisplay = othertemp.innerHTML;
+                    temp.innerHTML = "<h2>" + node.replace('_',' ') + "</h2>" + "<h3>" + toDisplay + "</h3>";
+                    monsters.appendChild(temp);
+                } else {
+                    //only show what isn't blank
+                    if (data[node]) {
+                        temp.innerHTML = "<h2>" + node.replace('_',' ') + "</h2>" + "<h3>" + data[node] + "</h3>";
+                        temp.setAttribute('class', 'entry');
+                        monsters.appendChild(temp);
                     }
                 }
             }
         }
     }).catch(function(err) {
-        // Error :(
+        console.log('ERROR: no monster found!');
+        console.log(err.toString());
     });
 }
 
 function getMonsters(value) {
-    fetch('https://dl.dropboxusercontent.com/s/iwz112i0bxp2n4a/5e-SRD-Monsters.json', {
+    fetch(api + 'monsters', {
         method: 'get'
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
         var monsterselector = document.getElementById('listselect');
         monsterselector.innerHTML = "";
-        for (var item = 0; item < data.length; item++) {
-            if (data[item].name.charAt(0).toLowerCase() === value) {
+        for (var item = 0; item < data.count; item++) {
+            if (data.results[item].name.charAt(0).toLowerCase() === value) {
                 var temp1 = createElement('li', '');
-                var temp2 = createElement('a',''+ data[item].name);
-                temp2.setAttribute('onclick','getMonsterDetails(\''+ data[item].name + '\')');
+                var temp2 = createElement('a',''+ data.results[item].name);
+                temp2.setAttribute('onclick','getMonsterDetails(\''+ data.results[item].url + '\')');
                 temp2.setAttribute('class','monsterSelectButton');
                 temp2.setAttribute('href','#');
                 temp1.appendChild(temp2);
@@ -502,44 +499,40 @@ function getMonsters(value) {
 
 
 
-function getSpellDetails(spell) {
+function getSpellDetails(url) {
     var spells = document.getElementById('spellcharacteristics');
     spells.innerHTML = "";
-    fetch('https://dl.dropboxusercontent.com/s/121t7xstyyeofxw/5e-SRD-Spells.json', {
+    fetch(url, {
         method: 'get'
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
-        for (var item = 0; item < data.length; item++) {
-            if (data[item].name === spell) {
-                var parseIt = data[item];
-                for(var node in parseIt){
-                    var temp = createElement('li','');
-                    if (parseIt.hasOwnProperty(node)) {
-                        if (Array.isArray(parseIt[node])){
-                            var subnode = parseIt[node];
-                            var othertemp = createElement('ul','');
-                            var othertempslistitem = createElement('li','');
-                            for (var thing in subnode){
-                                var subsub = subnode[thing];
-                                var onemorething = createElement('ul','');
-                                onemorething.setAttribute('class','subentry');
-                                for(var otherthing in subsub) {
-                                    var anothertemp = createElement('li','');
-                                    anothertemp.innerHTML = "<h2>" + otherthing + "</h2>" + "<h3>"+subsub[otherthing]+"</h3>";
-                                    onemorething.appendChild(anothertemp);
-                                }
-                                othertempslistitem.appendChild(onemorething);
-                                othertemp.appendChild(othertempslistitem);
-                            }
-                            var toDisplay = othertemp.innerHTML;
-                            temp.innerHTML = "<h2>" + node + "</h2>" + "<h3>"+toDisplay+"</h3>";
-                            spells.appendChild(temp);
-                        } else {
-                            temp.innerHTML = "<h2>" + node + "</h2>" + "<h3>"+parseIt[node]+"</h3>";
-                            temp.setAttribute('class','entry');
-                            spells.appendChild(temp);
-                        }
+        for (var node in data) {
+            //filter through categories we don't care about...
+            if (node !== '_id' && node !== 'index' && node !== 'url' && node !== 'classes' && node !== 'subclasses') {
+                var temp = createElement('li', '');
+                if (Array.isArray(data[node])) {
+                    var subnode = data[node];
+                    var othertemp = createElement('ul', '');
+                    for (var thing in subnode) {
+                        var othertempslistitem = createElement('li', '');
+                        temp.setAttribute('class', 'entry');
+                        othertempslistitem.innerHTML = "<h3>" + subnode[thing] + "</h3>";
+                        othertemp.appendChild(othertempslistitem);
+                    }
+                    var toDisplay = othertemp.innerHTML;
+                    temp.innerHTML = "<h2>" + node.replace('_', ' ') + "</h2>" + "<h3>" + toDisplay + "</h3>";
+                    spells.appendChild(temp);
+                } else {
+                    if (node === 'school'){
+                        temp.innerHTML = "<h2>" + node.replace('_', ' ') + "</h2>" + "<h3>" + data[node].name + "</h3>";
+                        temp.setAttribute('class', 'entry');
+                        spells.appendChild(temp);
+                    }
+                    else {
+                        temp.innerHTML = "<h2>" + node.replace('_', ' ') + "</h2>" + "<h3>" + data[node] + "</h3>";
+                        temp.setAttribute('class', 'entry');
+                        spells.appendChild(temp);
                     }
                 }
             }
@@ -550,18 +543,18 @@ function getSpellDetails(spell) {
 }
 
 function getSpells(value) {
-    fetch('https://dl.dropboxusercontent.com/s/121t7xstyyeofxw/5e-SRD-Spells.json', {
+    fetch(api + 'spells', {
         method: 'get'
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
         var spellselector = document.getElementById('listselect');
         spellselector.innerHTML = "";
-        for (var item = 0; item < data.length; item++) {
-            if (data[item].name.charAt(0).toLowerCase() === value) {
+        for (var item = 0; item < data.count; item++) {
+            if (data.results[item].name.charAt(0).toLowerCase() === value) {
                 var temp1 = createElement('li', '');
-                var temp2 = createElement('button',''+data[item].name);
-                temp2.setAttribute('onclick','getSpellDetails(\''+ data[item].name + '\')');
+                var temp2 = createElement('button',''+data.results[item].name);
+                temp2.setAttribute('onclick','getSpellDetails(\''+ data.results[item].url + '\')');
                 temp2.setAttribute('class','spellSelectButton');
                 temp2.setAttribute('href','#');
                 temp1.appendChild(temp2);
@@ -606,38 +599,38 @@ var xpMultipliers = [
 
 var challengeRatingtoXpValues = [
 ['0',10],
-['14', 11500],
 ['1/8', 25],
-['15', 13000],
 ['1/4', 50],
-['16', 15000],
 ['1/2', 100],
-['17', 18000],
 ['1', 200],
-['18', 20000],
 ['2', 450],
-['19', 22000],
 ['3', 700],
-['20', 25000],
 ['4', 1100],
-['21', 33000],
 ['5', 1800],
-['22', 41000],
 ['6', 2300],
-['23', 50000],
 ['7', 2900],
-['24', 62000],
 ['8', 3900],
-['25', 75000],
 ['9', 5000],
-['26', 90000],
 ['10', 5900],
-['27', 105000],
 ['11', 7200],
-['28', 120000],
 ['12', 8400],
-['29', 135000],
 ['13', 10000],
+['14', 11500],
+['15', 13000],
+['16', 15000],
+['17', 18000],
+['18', 20000],
+['19', 22000],
+['20', 25000],
+['21', 33000],
+['22', 41000],
+['23', 50000],
+['24', 62000],
+['25', 75000],
+['26', 90000],
+['27', 105000],
+['28', 120000],
+['29', 135000],
 ['30', 155000]
 ];
 
@@ -690,10 +683,53 @@ function getXpForMonster(monster,numOF) {
     return xpForMonster;
 }
 
-function generateEncounter(threshHold){
+function contains(nameOfMonster) {
+    if (climateCreatures !== null) {
+        for (var i = 0; i < climateCreatures.length; i++) {
+            if (climateCreatures[i] === nameOfMonster) {
+                return true;
+            }
+        }
+        return false;
+    } else {
+        return true;
+    }
+}
+
+var numOfMonsByChallengeRating = [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+];
+
+function determineNumOfMon(challengeRating, avg) {
+    numOfMons = 0;
+
+
+
+    return numOfMons;
+}
+
+function generateEncounter(threshHold, avgLvl) {
     var monstersForEncounter = [];
     var encounter = document.getElementById('encounterdetails');
-    var plural = false;
     encounter.innerHTML = "<h2>We're getting one ready...</h2>"
     fetch('https://dl.dropboxusercontent.com/s/iwz112i0bxp2n4a/5e-SRD-Monsters.json', {
         method: 'get'
@@ -702,13 +738,12 @@ function generateEncounter(threshHold){
     }).then(function(data) {
         var encounterXP = 0;
         do {
-            var monster = data[getRandomInt(0, 326)];
-            var numOfMonster = getRandomInt(1,25);
-            if (numOfMonster > 1){
-                plural = true;
-            }
+            do{
+                var monster = data[getRandomInt(0, 326)];
+            }while(contains(monster.name) === false);
+            var numOfMoster = determineNumOfMon(monster.challenge_rating, avgLvl);
             var xpForMonster = getXpForMonster(monster, numOfMonster);
-            if ((encounterXP + xpForMonster) < threshHold + 100) {
+            if ((encounterXP + xpForMonster) <= threshHold) {
                 encounterXP += xpForMonster;
                 monstersForEncounter.push([monster,numOfMonster]);
                 if (numOfMonster > 10){
@@ -718,12 +753,8 @@ function generateEncounter(threshHold){
         } while(encounterXP < threshHold);
         encounter.innerHTML = "";
         for (var x in monstersForEncounter){
-            var isplural = "";
-            if(monstersForEncounter[x][1] > 1){
-                isplural = "s";
-            }
             var temp = createElement('h3','');
-            temp.innerHTML = '<h3>' + monstersForEncounter[x][1] + ' ' + monstersForEncounter[x][0]['name'] + isplural +'</h3>';
+            temp.innerHTML = '<h3>' + monstersForEncounter[x][1] + ' ' + monstersForEncounter[x][0]['name'] + '</h3>';
             encounter.appendChild(temp);
         }
         if (!encounter.hasChildNodes()){
@@ -732,6 +763,15 @@ function generateEncounter(threshHold){
             encounter.appendChild(error);
         }
     });
+}
+
+function getAvgLvl(partyLevels) {
+    var sum = 0;
+    for (var i = 0; i < partyLevels.length; i++) {
+        sum += partyLevels[i];
+    }
+    sum = sum / partyLevels.length;
+    return sum;
 }
 
 function randomEnc(value) {
@@ -752,27 +792,787 @@ function randomEnc(value) {
                 partyLevel.push(parseInt(seperated[1]));
             }
             var xpThreshHold;
+            var avgPartyLvl;
             switch(value){
                 case 'easy':
                     xpThreshHold = getMaxXP(value, partyLevel)
-                    generateEncounter(xpThreshHold);
+                    avgPartyLvl = getAvgLvl(partyLevel);
+                    generateEncounter(xpThreshHold, avgPartyLvl);
                     break;
                 case 'norm':
                     xpThreshHold = getMaxXP(value, partyLevel);
-                    generateEncounter(xpThreshHold);
+                    avgPartyLvl = getAvgLvl(partyLevel);
+                    generateEncounter(xpThreshHold, avgPartyLvl);
                     break;
                 case 'hard':
                     xpThreshHold = getMaxXP(value, partyLevel);
-                    generateEncounter(xpThreshHold);
+                    avgPartyLvl = getAvgLvl(partyLevel);
+                    generateEncounter(xpThreshHold, avgPartyLvl);
                     break;
                 case 'dead':
                     xpThreshHold = getMaxXP(value, partyLevel);
-                    generateEncounter(xpThreshHold);
+                    avgPartyLvl = getAvgLvl(partyLevel);
+                    generateEncounter(xpThreshHold, avgPartyLvl);
                     break;
                 default:
-                    //???
+                    //do nothing - should not occur.
                     break;
             }
         })
     });
 }
+
+function selectClimate(climateID) {
+    switch (climateID) {
+        case 'artic':
+            document.getElementById('currentClimate').innerHTML = 'Currently: Artic';
+            climateCreatures = [
+                'Commoner',
+                'Owl',
+                'Blood Hawk',
+                'Kobold',
+                'Giant Owl',
+                'Winged Kobold',
+                'Ice Mephit',
+                'Orc',
+                'Brown Bear',
+                'Half-ogre',
+                'Griffon',
+                'Ogre',
+                'Orc Eye of Gruumsh',
+                'Orog',
+                'Polar Bear',
+                'Saber-toothed Tige',
+                'Manticore',
+                'Winter Wolf',
+                'Yeti',
+                'Revenant',
+                'Troll',
+                'Werebear',
+                'Young Remorhaz',
+                'Mammoth',
+                'Young White Dragon',
+                'Frost Giant',
+                'Abominable Yeti',
+                'Remorhaz',
+                'Roc',
+                'Adult White Dragon',
+                'Ancient White Dragon'
+            ];
+            break;
+        case 'coastal':
+            document.getElementById('currentClimate').innerHTML = 'Currently: Coastal';
+            climateCreatures = [
+                'Commoner',
+                'Crab',
+                'Eagle',
+                'Bandit',
+                'Blood Hawk',
+                'Giant Crab',
+                'Kobold',
+                'Merfolk',
+                'Poisonous Snake',
+                'Stirge',
+                'Giant Lizard',
+                'Giant Wolf Spider',
+                'Pseudodragon',
+                'Pteranodon',
+                'Winged Kobold',
+                'Sahuagin',
+                'Giant Eagle',
+                'Giant Toad',
+                'Harpy',
+                'Griffon',
+                'Merrow',
+                'Ogre',
+                'Plesiosaurus',
+                'Sahuagin Priestess',
+                'Sea Hag',
+                'Manticore',
+                'Banshee',
+                'Sahuagin Baron',
+                'Water Elemental',
+                'Cyclops',
+                'Young Bronze Dragon',
+                'Young Blue Dragon',
+                'Djinni	',
+                'Marid',
+                'Roc',
+                'Storm Giant',
+                'Adult Bronze Dragon',
+                'Adult Blue Dragon',
+                'Dragon Turtle',
+                'Ancient Bronze Dragon',
+                'Ancient Blue Dragon'
+            ];
+            break;
+        case 'desert':
+            document.getElementById('currentClimate').innerHTML = 'Currently: Desert';
+            climateCreatures = [
+                'Cat',
+                'Commoner',
+                'Hyena',
+                'Jackal',
+                'Scorpion',
+                'Vulture',
+                'Camel',
+                'Bandit',
+                'Flying Snake',
+                'Kobold',
+                'Mule',
+                'Poisonous Snake',
+                'Stirge',
+                'Constrictor Snake',
+                'Giant Lizard',
+                'Giant Poisonous Snake',
+                'Giant Wolf Spider',
+                'Pseudodragon',
+                'Winged Kobold',
+                'Dust Mephit',
+                'Gnoll',
+                'Hobgoblin',
+                'Jackalwere',
+                'Swarm of Insects',
+                'Death Dog',
+                'Giant Hyena',
+                'Giant Spider',
+                'Giant Toad	Large',
+                'Giant Vulture',
+                'Half-ogre',
+                'Lion',
+                'Thri-kreen',
+                'Yuan-ti Pureblood',
+                'Giant Constrictor Snake',
+                'Gnoll Pack Lord',
+                'Ogre',
+                'Giant Scorpion',
+                'Hobgoblin Captain',
+                'Mummy',
+                'Phase Spider',
+                'Wight',
+                'Yuan-ti Malison',
+                'Couatl',
+                'Gnoll Fang of Yeenoghu',
+                'Lamia',
+                'Weretiger',
+                'Air Elemental',
+                'Fire Elemental',
+                'Revenant',
+                'Cyclops',
+                'Hobgoblin Warlord',
+                'Medusa',
+                'Young Brass Dragon',
+                'Yuan-ti Abomination',
+                'Young Blue Dragon',
+                'Guardian Naga',
+                'Efreeti',
+                'Gynosphinx',
+                'Roc',
+                'Adult Brass Dragon',
+                'Mummy Lord',
+                'Purple Worm',
+                'Adult Blue Dragon',
+                'Adult Blue Dracolich',
+                'Androsphinx',
+                'Ancient Brass Dragon',
+                'Ancient Blue Dragon'
+            ];
+            break;
+        case 'forest':
+            document.getElementById('currentClimate').innerHTML = 'Currently: Forest';
+            climateCreatures = [
+                'Awakened Shrub',
+                'Baboon',
+                'Badger',
+                'Bandit',
+                'Cat',
+                'Commoner',
+                'Deer',
+                'Hyena',
+                'Owl',
+                'Bandit',
+                'Blood Hawk',
+                'Flying Snake',
+                'Giant Rat',
+                'Giant Weasel',
+                'Kobold',
+                'Mastiff',
+                'Poisonous Snake',
+                'Stirge',
+                'Twig Blight',
+                'Blink Dog',
+                'Boar',
+                'Constrictor Snake',
+                'Elk',
+                'Giant Badger',
+                'Giant Bat',
+                'Giant Frog',
+                'Giant Lizard',
+                'Giant Owl',
+                'Giant Poisonous Snake',
+                'Giant Wolf Spider',
+                'Goblin',
+                'Kenku',
+                'Needle Blight',
+                'Panther',
+                'Pixie',
+                'Pseudodragon',
+                'Sprite',
+                'Swarm of Ravens',
+                'Winged Kobold',
+                'Wolf',
+                'Ape',
+                'Black Bear',
+                'Giant Wasp',
+                'Gnoll',
+                'Hobgoblin',
+                'Lizardfolk',
+                'Orc',
+                'Satyr',
+                'Swarm of Insects',
+                'Vine Blight',
+                'Worg',
+                'Brown Bear',
+                'Bugbear',
+                'Dire Wolf',
+                'Dryad',
+                'Giant Hyena',
+                'Giant Spider',
+                'Giant Toad',
+                'Goblin Boss',
+                'Half-ogre',
+                'Harpy',
+                'Tiger',
+                'Young Faerie Dragon',
+                'Yuan-ti Pureblood',
+                'Adult Faerie Dragon',
+                'Ankheg',
+                'Awakened Tree',
+                'Centaur',
+                'Ettercap',
+                'Giant Boar',
+                'Giant Constrictor Snake',
+                'Giant Elk',
+                'Gnoll Pack Lord',
+                'Grick',
+                'Lizardfolk Shaman',
+                'Ogre',
+                'Orc Eye of Gruumsh',
+                'Orog',
+                'Pegasus',
+                'Swarm of Poisonous Snakes',
+                'Wererat',
+                'Will-o-wisp',
+                'Displacer Beast',
+                'Green Hag',
+                'Hobgoblin Captain',
+                'Owlbear',
+                'Phase Spider',
+                'Werewolf',
+                'Yuan-ti Malison',
+                'Banshee',
+                'Couatl',
+                'Gnoll Fang of Yeenoghu',
+                'Wereboar',
+                'Weretiger',
+                'Gorgon',
+                'Revenant',
+                'Shambling Mound',
+                'Troll',
+                'Unicorn',
+                'Werebear',
+                'Hobgoblin Warlord',
+                'Giant Ape',
+                'Grick Alpha',
+                'Oni',
+                'Yuan-ti Abomination',
+                'Young Green Dragon',
+                'Treant',
+                'Guardian Naga',
+                'Young Gold Dragon',
+                'Adult Green Dragon',
+                'Adult Gold Dragon',
+                'Ancient Green Dragon',
+                'Ancient Gold Dragon'
+            ];
+            break;
+        case 'grassland':
+            document.getElementById('currentClimate').innerHTML = 'Currently: Grassland';
+            climateCreatures = [
+                'Cat',
+                'Commoner',
+                'Deer',
+                'Eagle',
+                'Goat',
+                'Hyena',
+                'Jackal',
+                'Vulture',
+                'Bandit',
+                'Blood Hawk',
+                'Flying Snake',
+                'Giant Weasel',
+                'Poisonous Snake',
+                'Stirge',
+                'Axe Beak',
+                'Boar',
+                'Elk',
+                'Giant Poisonous Snake',
+                'Giant Wolf Spider',
+                'Goblin',
+                'Panther',
+                'Pteranodon',
+                'Riding Horse',
+                'Wolf',
+                'Cockatrice',
+                'Giant Goat',
+                'Giant Wasp',
+                'Gnoll',
+                'Hobgoblin',
+                'Jackalwere',
+                'Orc',
+                'Swarm of Insects',
+                'Worg',
+                'Bugbear',
+                'Giant Eagle',
+                'Giant Hyena',
+                'Giant Vulture',
+                'Goblin Boss',
+                'Hippogriff',
+                'Lion',
+                'Scarecrow',
+                'Thri-kreen',
+                'Tiger',
+                'Allosaurus',
+                'Ankheg',
+                'Centaur',
+                'Giant Boar',
+                'Giant Elk',
+                'Gnoll Pack Lord',
+                'Griffon',
+                'Ogre',
+                'Orc Eye of Gruumsh',
+                'Orog',
+                'Pegasus',
+                'Rhinoceros',
+                'Ankylosaurus',
+                'Hobgoblin Ca',
+                'Manticore',
+                'Phase Spider',
+                'Couatl',
+                'Elephant',
+                'Gnoll Fang of Yeenoghu',
+                'Wereboar',
+                'Weretiger',
+                'Bulette',
+                'Gorgon',
+                'Triceratops',
+                'Chimera',
+                'Cyclops',
+                'Hobgoblin Warlord',
+                'Tyrannosaurus Rex',
+                'Young Gold Dragon',
+                'Adult Gold Dragon',
+                'Ancient Gold Dragon'
+            ];
+            break;
+        case 'hill':
+            document.getElementById('currentClimate').innerHTML = 'Currently: Hill';
+            climateCreatures = [
+                'Commoner',
+                'Baboon',
+                'Bandit',
+                'Eagle',
+                'Goat',
+                'Hyena',
+                'Raven',
+                'Vulture',
+                'Blood Hawk',
+                'Giant Weasel',
+                'Kobold',
+                'Mastiff',
+                'Mule',
+                'Poisonous Snake',
+                'Stirge',
+                'Axe Beal',
+                'Boar',
+                'Elk',
+                'Giant Owl',
+                'Giant Wolf Spider',
+                'Goblin	Small',
+                'Panther',
+                'Pseudodragon',
+                'Swarm of Bats',
+                'Swarm of Rav',
+                'Winged Kobold',
+                'Wolf',
+                'Giant Goat',
+                'Gnoll',
+                'Hobgoblin',
+                'Orc',
+                'Swarm of Insects',
+                'Worg',
+                'Brown Bear',
+                'Dire Wolf',
+                'Giant Eagle',
+                'Giant Hyena',
+                'Goblin Boss',
+                'Half-ogre',
+                'Harpy',
+                'Hippogriff',
+                'Lion',
+                'Giant Boar',
+                'Giant Elk',
+                'Gnoll',
+                'Griffon',
+                'Ogre',
+                'Orc Eye of Gruumsh',
+                'Orog',
+                'Pegasus',
+                'Peryton',
+                'Green Hag',
+                'Hobgoblin Captain',
+                'Manticore',
+                'Phase Spider',
+                'Werewolf',
+                'Ettin',
+                'Gnoll Fang of Yeenoghu',
+                'Wereboar',
+                'Bulette',
+                'Gorgon',
+                'Hill Giant',
+                'Revenant',
+                'Troll',
+                'Werebear',
+                'Chimera',
+                'Cyclops',
+                'Galeb Duhr',
+                'Hobgoblin Warlord',
+                'Wyvern',
+                'Stone Giant',
+                'Young Copper Dragon',
+                'Young Red Dragon',
+                'Roc',
+                'Adult Copper Dragon',
+                'Adult Red Dragon',
+                'Ancient Copper Dragon',
+                'Ancient Red Dragon'
+            ];
+            break;
+        case 'mountain':
+            document.getElementById('currentClimate').innerHTML = 'Currently: Mountain';
+            climateCreatures = [
+               'Eagle',
+               'Commoner',
+               'Goat',
+               'Bandit',
+               'Blood Hawk',
+               'Bandit',
+               'Kobold',
+               'Stirge',
+               'Aarakocra',
+               'Pseudodragon',
+               'Pteranodon',
+               'Swarm of Bats',
+               'Winged Kobold',
+               'Giant Goat',
+               'Orc',
+               'Giant Eagle',
+               'Half-ogre',
+               'Harpy',
+               'Hippogriff',
+               'Lion',
+               'Giant Elk',
+               'Griffon',
+               'Ogre',
+               'Orc Eye of Gruumsh',
+               'Orog',
+               'Peryton',
+               'Saber-toothed Tiger',
+               'Basilisk',
+               'Hell Hound',
+               'Manticore',
+               'Ettin',
+               'Air Elemental',
+               'Bulette',
+               'Troll',
+               'Chimera',
+               'Cyclops',
+               'Galeb Duhr',
+               'Wyvern',
+               'Stone Gian',
+               'Frost Giant',
+               'Cloud Giant',
+               'Fire Giant',
+               'Young Silver Dragon',
+               'Young Red Dragon',
+               'Roc',
+               'Adult Silver Dragon',
+               'Adult Red Dragon',
+               'Ancient Silver Dragon',
+                'Ancient Red Dragon'
+            ];
+            break;
+        case 'swamp':
+            document.getElementById('currentClimate').innerHTML = 'Currently: Swamp';
+            climateCreatures = [
+                'Bandit',
+                'Commoner',
+                'Rat',
+                'Raven',
+                'Giant Rat',
+                'Kobold',
+                'Poisonous Snake',
+                'Stirge',
+                'Bullywug',
+                'Constrictor Snake',
+                'Giant Frog',
+                'Giant Lizard',
+                'Giant Poisonous Snake',
+                'Mud Mephit',
+                'Swarm of Rats',
+                'Swarm of Ravens',
+                'Winged Kobold',
+                'Crocodile',
+                'Lizardfolk',
+                'Orc',
+                'Swarm of Insects',
+                'Ghoul',
+                'Giant Spider',
+                'Giant Toad',
+                'Yuan-ti Pureblood',
+                'Ghast',
+                'Giant Constrictor Snake',
+                'Lizardfolk Shaman',
+                'Ogre',
+                'Orc Eye of Gruumsh',
+                'Swarm of Poisonous Snakes',
+                'Will-o-wisp',
+                'Green Hag',
+                'Wight',
+                'Yuan-ti Malison',
+                'Giant Crocodile',
+                'Revenant',
+                'Shambling Mound',
+                'Troll',
+                'Water Elemental',
+                'Young Black Dragon',
+                'Yuan-ti Abomination',
+                'Hydra',
+                'Adult Black Dragon',
+                'Ancient Black Dragon',
+            ];
+            break;
+        case 'underdark':
+            document.getElementById('currentClimate').innerHTML = 'Currently: Underdark';
+            climateCreatures = [
+                'Giant Fire Beetle',
+                'Myconid Sprout',
+                'Shrieker',
+                'Flumph',
+                'Giant Rat',
+                'Kobold',
+                'Stirge',
+                'Drow',
+                'Giant Bat',
+                'Giant Centipede',
+                'Giant Lizard',
+                'Giant Poisonous Snake',
+                'Goblin',
+                'Grimlock',
+                'Kuo-toa',
+                'Swarm of Bats',
+                'Troglodyte',
+                'Violet Fungus',
+                'Winged Kobold',
+                'Darkmantle',
+                'Gas Spore',
+                'Gray Ooze',
+                'Hobgoblin',
+                'Magma Mephit',
+                'Myconid Adult',
+                'Orc',
+                'Piercer',
+                'Rust Monster',
+                'Shadow',
+                'Svirfneblin',
+                'Swarm of Insects',
+                'Bugbear',
+                'Duergar',
+                'Fire Snake',
+                'Ghoul',
+                'Giant Spider',
+                'Giant Toad',
+                'Goblin Boss',
+                'Half-ogre',
+                'Kuo-toa Whip',
+                'Quaggoth Spore Servant',
+                'Specter',
+                'Carrion Crawler',
+                'Gargoyle',
+                'Gelatinous Cube',
+                'Ghast',
+                'Giant Constrictor Snake',
+                'Gibbering Mouther',
+                'Grick',
+                'Intellect Devourer',
+                'Mimic',
+                'Minotaur Skeleton',
+                'Nothic',
+                'Ochre Jelly',
+                'Ogre',
+                'Orc Eye of Gruumsh',
+                'Orog',
+                'Polar Bear',
+                'Quaggoth',
+                'Doppelganger',
+                'Grell',
+                'Hell Hound',
+                'Hobgoblin Captain',
+                'Hook Horror',
+                'Minotaur',
+                'Phase Spider',
+                'Quaggoth Thonot',
+                'Spectator',
+                'Water Weird',
+                'Wight',
+                'Black Pudding',
+                'Bone Naga',
+                'Chuul',
+                'Ettin',
+                'Flameskull',
+                'Ghost',
+                'Beholder Zombie',
+                'Drow Elite Warrior',
+                'Earth Elemental',
+                'Otyugh',
+                'Roper',
+                'Salamander',
+                'Troll',
+                'Umber Hulk',
+                'Vampire Spawn',
+                'Wraith',
+                'Xorn',
+                'Chimera',
+                'Cyclops',
+                'Drider',
+                'Hobgoblin Warlord',
+                'Kuo-toa Archpriest',
+                'Drow Mage',
+                'Grick Alpha',
+                'Mind Flayer',
+                'Stone Giant',
+                'Cloaker',
+                'Fomorian',
+                'Mind Flayer Arcanist',
+                'Spirit Naga',
+                'Fire Giant',
+                'Aboleth',
+                'Behir',
+                'Dao',
+                'Beholder',
+                'Young Red Shadow Dragon',
+                'Death Tyrant',
+                'Purple Worm'
+            ];
+            break;
+        case 'underwater':
+            document.getElementById('currentClimate').innerHTML = 'Currently: Underwater';
+            climateCreatures = [
+                'Quipper',
+                'Merfolk',
+                'Constrictor Snake',
+                'Steam Mephit',
+                'Giant Sea Horse',
+                'Reef Shark',
+                'Sahuagin',
+                'Giant Octopus',
+                'Swarm of Quippers',
+                'Giant Constrictor Snake',
+                'Hunter Shark',
+                'Merrow',
+                'Plesiosaurus',
+                'Sahuagin Priestess',
+                'Sea Hag',
+                'Killer Whale',
+                'Giant Shark',
+                'Sahuagin Baron',
+                'Water Elemental',
+                'Marid',
+                'Dragon Turtle',
+                'Kraken'
+            ];
+            break;
+        case 'urban':
+            document.getElementById('currentClimate').innerHTML = 'Currently: Urban';
+            climateCreatures = [
+                'Cat',
+                'Commoner',
+                'Goat',
+                'Rat',
+                'Raven',
+                'Bandit',
+                'Flying Snake',
+                'Giant Rat',
+                'Kobold',
+                'Mastiff',
+                'Mule',
+                'Pony',
+                'Stirge	Tiny',
+                'Draft Horse',
+                'Giant Centipede',
+                'Giant Poisonous Snake',
+                'Kenku',
+                'Pseudodragon',
+                'Riding Horse',
+                'Skeleton',
+                'Smoke Mephit',
+                'Swarm of Bats',
+                'Swarm of Rats',
+                'Swarm of Ravens',
+                'Winged Kobold',
+                'Zombie',
+                'Crocodile',
+                'Giant Wasp',
+                'Shadow',
+                'Swarm of Insects',
+                'Warhorse',
+                'Ghoul',
+                'Giant Spider',
+                'Half-ogre',
+                'Specter',
+                'Yuan-ti Pureblood',
+                'Gargoyle',
+                'Ghast',
+                'Mimic',
+                'Wererat',
+                'Will-o-wisp',
+                'Doppelganger',
+                'Phase Spider',
+                'Water Weird',
+                'Wight',
+                'Couatl',
+                'Ghost',
+                'Incubus',
+                'Succubus',
+                'Cambion',
+                'Revenant',
+                'Vampire Spawn',
+                'Invisible Stalker',
+                'Oni',
+                'Shield Guardian',
+                'Gray Slaad',
+                'Young Silver Dragon ',
+                'Rakshasa',
+                'Vampire',
+                'Adult Silver Dragon',
+                'Ancient Silver Dragon',
+                'Tarrasque'
+            ];
+            break;
+        default:
+            document.getElementById('currentClimate').innerHTML = 'Currently: All';
+            climateCreatures = null;
+            break;
+    }
+}
+
